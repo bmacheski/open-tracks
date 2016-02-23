@@ -31,3 +31,9 @@ node_modules
 
 # Optional REPL history
 .node_repl_history
+client/bower_components
+client/public/bundle.js
+client/public/*.eot
+client/public/*.ttf
+client/public/*.woff
+client/public/*.svg

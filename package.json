@@ -1,0 +1,43 @@
+{
+  "name": "open-tracks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "start": "nodemon server.js",
+    "build": "webpack --w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmacheski/open-tracks.git"
+  },
+  "author": "Brian Macheski <bwm0007@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bmacheski/open-tracks/issues"
+  },
+  "homepage": "https://github.com/bmacheski/open-tracks#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^3.0.0",
+    "redux": "^3.3.1",
+    "redux-thunk": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "file-loader": "^0.8.5",
+    "redux-logger": "^2.6.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.14",
+    "webpack-notifier": "^1.3.0"
+  }
+}
