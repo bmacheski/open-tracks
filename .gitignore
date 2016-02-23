@@ -37,3 +37,4 @@ client/public/*.eot
 client/public/*.ttf
 client/public/*.woff
 client/public/*.svg
+secrets.js

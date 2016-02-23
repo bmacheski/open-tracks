@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-fetch'
+import { client_id } from '../../../secrets'
 
 const base = '//api.soundcloud.com/tracks?linked_partitioning=1&client_id='
 const options = '&limit=20&offset=0&q='
-const clientID = '8ca138fc92a12343bd9e25b297b5d35e'
-const scUrl = `${base}${clientID}${options}`
+
+const scUrl = `${base}${client_id}${options}`
 
 function receiveSongs(query, json) {
   return {
