@@ -6,6 +6,13 @@ const options = '&limit=20&offset=0&q='
 
 const scUrl = `${base}${client_id}${options}`
 
+function updateQuery(query) {
+  return {
+    type: 'UPDATE_QUERY',
+    query: query
+  }
+}
+
 function receiveSongs(query, json) {
   return {
     type: 'RECEIVE_SONGS',
@@ -24,6 +31,7 @@ function requestSongs(query) {
 export default function fetchSongs(query) {
   return dispatch => {
     dispatch(requestSongs(query))
+    dispatch(updateQuery(query))
     return fetch(`${scUrl}${query}`)
       .then(response => response.json())
       .then(json => dispatch(receiveSongs(query, json)))

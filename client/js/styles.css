@@ -1,0 +1,15 @@
+li {
+  color: black;
+  list-style: none;
+}
+
+.search-results li{
+  float: none !important;
+  background-color: #fff !important;
+  height: 30px;
+}
+
+.search-results {
+  margin-left: 100px;
+  margin-right: 100px;
+}

@@ -10,16 +10,21 @@ class Nav extends Component {
 
   handleKeyUp(e) {
     e.preventDefault()
-
     const { dispatch } = this.props
     let query = this.refs.searchInput.value
-    if (e.keyCode === 13) {
-      console.log(query)
+    if (e.keyCode === 13 && query) {
       dispatch(fetchSongs(query))
     }
   }
 
+  renderSearchResults() {
+    const { songs, query } = this.props
+    return songs[query].items.map((song, i) => {
+      return <li key={i}>{song.title}</li>
+    })
+  }
   render() {
+    const { songs, query } = this.props
     let input = (
       <div className="input-field">
         <input
@@ -31,11 +36,21 @@ class Nav extends Component {
         </label>
       </div>
     )
-    return (
-      <nav>
-        {input}
-      </nav>
-    )
+    if (query) {
+      let res = this.renderSearchResults()
+      return (
+        <nav>
+          {input}
+          <ul className="search-results">{res}</ul>
+        </nav>
+      )
+    } else {
+      return (
+        <nav>
+          {input}
+        </nav>
+      )
+    }
   }
 }
 export default Nav

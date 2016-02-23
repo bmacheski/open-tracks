@@ -10,11 +10,9 @@ function song(state = initialState, action) {
         isFetching: true
       })
     case 'RECEIVE_SONGS':
-      console.log(action)
       return Object.assign({}, state, {
         isFetching: false,
-        items: [...state.items, ...action.songs],
-        nextUrl: action.nextUrl
+        items: [...state.items, ...action.songs]
       })
     default:
       return state;
