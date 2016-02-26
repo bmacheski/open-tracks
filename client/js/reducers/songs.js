@@ -4,7 +4,7 @@ const initialState = {
 }
 
 function song(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'REQUEST_SONGS':
       return Object.assign({}, state, {
         isFetching: true
@@ -20,7 +20,7 @@ function song(state = initialState, action) {
 }
 
 export default function songs(state = {}, action) {
-  switch(action.type) {
+  switch (action.type) {
     case 'REQUEST_SONGS':
       return Object.assign({}, state, {
         [action.query]: song(state[action.query], action)

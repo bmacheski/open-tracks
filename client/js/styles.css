@@ -5,7 +5,7 @@ li {
   height: 50px !important;
 }
 
-nav .input-field label i {
+.input-field label i, .create-title {
   color: rgb(158, 158, 158);
   position: relative;
   left: 10px;
@@ -21,6 +21,10 @@ nav .input-field label i {
   position: relative;
   left: 500px;
 }
+
+ .create-title {
+  left: 20%;
+ }
 
 .input-field, .search-results  {
   width: 60%;

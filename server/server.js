@@ -2,17 +2,20 @@
 
 const express = require('express')
   , chalk     = require('chalk')
-  , io        = require('socket.io')()
+  , socketio  = require('socket.io')()
+  , mongoose   = require('mongoose')
+  , config    = require('./config/development')
   , app       = express()
 
-const port = process.env.PORT || 3000
+const server = app.listen(3000, () => {
+  console.log(chalk.green('✔  Server listening on port 3000'))
+})
+const io = socketio.listen(server)
+
+mongoose.connect(config.dbUrl)
 
 require('./config/serverConfig.js')(app, express)
 
 io.on('connection', function (socket) {
   console.log('new user connected.')
-})
-
-app.listen(port, () => {
-  console.log(chalk.green('✔  Server listening on port:', port))
 })

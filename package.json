@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/bmacheski/open-tracks#readme",
   "dependencies": {
+    "axios": "^0.9.1",
+    "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1",
+    "mongoose": "^4.4.5",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.0",

@@ -5,10 +5,6 @@ class Nav extends Component {
     return (
       <div>
         <nav></nav>
-        <ul className="tabs">
-          <li className="tab col m3 s12"><a href="search">Search</a></li>
-          <li className="tab col m3 s12"><a href="playlist">Playlist</a></li>
-        </ul>
       </div>
     )
   }

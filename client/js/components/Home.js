@@ -24,6 +24,13 @@ class Home extends Component {
   }
   render() {
     const { songs, query } = this.props
+    let tabs = (
+      <ul className="tabs">
+        <li className="tab col m3 s12"><a href="search">Search</a></li>
+        <li className="tab col m3 s12"><a href="playlist">Playlist</a></li>
+      </ul>
+    )
+
     let input = (
       <div className="input-field">
         <input
@@ -40,6 +47,7 @@ class Home extends Component {
       let res = this.renderSearchResults()
       return (
         <div>
+          {tabs}
           {input}
           <ul className="search-results">{res}</ul>
         </div>
@@ -47,6 +55,7 @@ class Home extends Component {
     } else {
       return (
         <div>
+          {tabs}
           {input}
         </div>
       )
