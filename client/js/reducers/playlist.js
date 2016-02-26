@@ -1,22 +1,22 @@
 export default function playlist(state = {}, action) {
   switch (action.type) {
-    case 'SAVE':
+    case 'SAVE_CHANNEL':
       return Object.assign({}, state, {
-        savePending: true,
-        saveSucceeded: null,
-        saveFailure: null
+        saveChannelPending: true,
+        saveChannelSucceeded: null,
+        saveChannelFailure: null
       })
-    case 'SAVE_SUCCESS':
+    case 'SAVE_CHANNEL_SUCCESS':
       return Object.assign({}, state, {
-        savePending: false,
-        saveSucceeded: true,
-        saveFailure: false
+        saveChannelPending: false,
+        saveChannelSucceeded: true,
+        saveChannelFailure: false
       })
-    case 'SAVE_FAILURE':
+    case 'SAVE_CHANNEL_FAILURE':
       return Object.assign({}, state, {
-        savePending: false,
-        saveSucceeded: false,
-        saveFailure: true
+        saveChannelPending: false,
+        saveChannelSucceeded: false,
+        saveChannelFailure: true
       })
     default:
       return state

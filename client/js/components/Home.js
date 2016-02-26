@@ -19,7 +19,7 @@ class Home extends Component {
   renderSearchResults() {
     const { songs, query } = this.props
     return songs[query].items.map((song, i) => {
-      return <li key={i}>{song.title}</li>
+      return <li key={i}>{song.title}<i className="material-icons add-button">add</i></li>
     })
   }
   render() {

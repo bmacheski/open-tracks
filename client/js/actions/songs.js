@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import axios from 'axios'
 import { client_id } from '../../../secrets'
 
 const base = '//api.soundcloud.com/tracks?linked_partitioning=1&client_id='
@@ -13,11 +13,11 @@ function updateQuery(query) {
   }
 }
 
-function receiveSongs(query, json) {
+function receiveSongs(query, songs) {
   return {
     type: 'RECEIVE_SONGS',
     query: query,
-    songs: json.collection
+    songs: songs
   }
 }
 
@@ -32,8 +32,9 @@ export default function fetchSongs(query) {
   return dispatch => {
     dispatch(requestSongs(query))
     dispatch(updateQuery(query))
-    return fetch(`${scUrl}${query}`)
-      .then(response => response.json())
-      .then(json => dispatch(receiveSongs(query, json)))
+    return axios
+      .get(`${scUrl}${query}`)
+      .then(response => response.data.collection)
+      .then(res => dispatch(receiveSongs(query, res)))
   }
 }

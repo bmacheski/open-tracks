@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import createChannel from '../actions/playlist'
+import { createChannel } from '../actions/playlist'
 
 class CreateRoom extends Component {
   constructor(props) {

@@ -1,27 +1,27 @@
-const axios = require('axios')
+import axios from 'axios'
 import { browserHistory } from 'react-router'
 
-function saveSuccess() {
-  return {
-    type: 'SAVE_SUCCESS'
-  }
-}
-
-function saveFailure() {
-  return {
-    type: 'SAVE_FAILURE'
-  }
-}
-
-export default function createChannel(channel) {
+export function createChannel(channel) {
   return dispatch => {
-    dispatch({ type: 'SAVE' })
+    dispatch({ type: 'SAVE_CHANNEL' })
     return axios
       .post('/channel', { channel: channel })
       .then(res => {
-          dispatch(saveSuccess())
+          dispatch({ type: 'SAVE_CHANNEL_SUCCESS' })
           browserHistory.push(`/home/${channel}`)
       })
-      .catch(err => dispatch(saveFailure()))
+      .catch(err => dispatch({ type: 'SAVE_CHANNEL_FAILURE' }))
   }
 }
+
+// export function addSongToPlaylist(title) {
+//   return dispatch => {
+//     dispatch({ type: 'SAVE_SONG' })
+//     return axios
+//       .post('/song', { title: title })
+//       .then(res => {
+//           dispatch({ type: 'UPDATE_PLAYLIST' })
+//       })
+//       .catch(err => throw err)
+//   }
+// }

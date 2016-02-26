@@ -5,6 +5,10 @@ li {
   height: 50px !important;
 }
 
+.add-button {
+  float: right;
+}
+
 .input-field label i, .create-title {
   color: rgb(158, 158, 158);
   position: relative;
@@ -14,7 +18,7 @@ li {
 #search {
   width: 90%;
   position: relative;
-  left: 5%;
+  left: 7%;
 }
 
 .home {
@@ -36,6 +40,9 @@ li {
 
 .search-results li{
   float: none !important;
+  left: 7%;
+  width: 90%;
+  position: relative;
 }
 
 .side-nav {
