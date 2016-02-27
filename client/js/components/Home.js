@@ -4,23 +4,8 @@ import Tabs from './Tabs'
 import SearchInput from './SearchInput'
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.handleKeyUp = this.handleKeyUp.bind(this)
-  }
-
-  handleKeyUp(e) {
-    e.preventDefault()
-    const { dispatch } = this.props
-    let query = this.refs.searchInput.value
-    if (e.keyCode === 13 && query) {
-      dispatch(fetchSongs(query))
-    }
-  }
-
   handleClick(song) {
     const { dispatch } = this.props
-
     let title = song.title
     let streamUrl = song.stream_url
     dispatch(createSong(title, streamUrl))
@@ -28,10 +13,10 @@ class Home extends Component {
 
   renderSearchResults() {
     const { songs, query } = this.props
-
     return songs[query].items.map((song, i) => {
       return (
-        <li key={i}>{song.title}
+        <li key={i}>
+          {song.title}
           <i
             onClick={this.handleClick.bind(this, song)}
             className="material-icons add-button">add</i>
@@ -42,13 +27,11 @@ class Home extends Component {
 
   render() {
     const { songs, query, dispatch } = this.props
-
     if (query) {
       return (
         <div>
           <Tabs />
-          <SearchInput
-            dispatch={dispatch} />
+          <SearchInput dispatch={dispatch} />
           <ul className="search-results">{this.renderSearchResults()}</ul>
         </div>
       )
@@ -56,8 +39,7 @@ class Home extends Component {
     return (
       <div>
         <Tabs />
-        <SearchInput
-          dispatch={dispatch} />
+        <SearchInput dispatch={dispatch} />
       </div>
     )
   }
