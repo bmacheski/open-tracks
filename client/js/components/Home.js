@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import fetchSongs from '../actions/songs'
+import { createSong } from '../actions/playlist'
+import Tabs from './Tabs'
+import SearchInput from './SearchInput'
 
 class Home extends Component {
   constructor(props) {
@@ -16,50 +18,48 @@ class Home extends Component {
     }
   }
 
+  handleClick(song) {
+    const { dispatch } = this.props
+
+    let title = song.title
+    let streamUrl = song.stream_url
+    dispatch(createSong(title, streamUrl))
+  }
+
   renderSearchResults() {
     const { songs, query } = this.props
+
     return songs[query].items.map((song, i) => {
-      return <li key={i}>{song.title}<i className="material-icons add-button">add</i></li>
+      return (
+        <li key={i}>{song.title}
+          <i
+            onClick={this.handleClick.bind(this, song)}
+            className="material-icons add-button">add</i>
+        </li>
+      )
     })
   }
-  render() {
-    const { songs, query } = this.props
-    let tabs = (
-      <ul className="tabs">
-        <li className="tab col m3 s12"><a href="search">Search</a></li>
-        <li className="tab col m3 s12"><a href="playlist">Playlist</a></li>
-      </ul>
-    )
 
-    let input = (
-      <div className="input-field">
-        <input
-          ref="searchInput"
-          type="text"
-          id="search"
-          onKeyUp={this.handleKeyUp} />
-        <label>
-          <i className="material-icons">search</i>
-        </label>
-      </div>
-    )
+  render() {
+    const { songs, query, dispatch } = this.props
+
     if (query) {
-      let res = this.renderSearchResults()
       return (
         <div>
-          {tabs}
-          {input}
-          <ul className="search-results">{res}</ul>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          {tabs}
-          {input}
+          <Tabs />
+          <SearchInput
+            dispatch={dispatch} />
+          <ul className="search-results">{this.renderSearchResults()}</ul>
         </div>
       )
     }
+    return (
+      <div>
+        <Tabs />
+        <SearchInput
+          dispatch={dispatch} />
+      </div>
+    )
   }
 }
 

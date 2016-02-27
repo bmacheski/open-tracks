@@ -14,14 +14,14 @@ export function createChannel(channel) {
   }
 }
 
-// export function addSongToPlaylist(title) {
-//   return dispatch => {
-//     dispatch({ type: 'SAVE_SONG' })
-//     return axios
-//       .post('/song', { title: title })
-//       .then(res => {
-//           dispatch({ type: 'UPDATE_PLAYLIST' })
-//       })
-//       .catch(err => throw err)
-//   }
-// }
+export function createSong(title, streamUrl) {
+  return dispatch => {
+    dispatch({ type: 'SAVE_SONG' })
+    return axios
+      .post('/song', { title: title, streamUrl: streamUrl })
+      .then(res => {
+          dispatch({ type: 'UPDATE_PLAYLIST' })
+      })
+      .catch(err => console.log(err))
+  }
+}

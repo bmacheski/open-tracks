@@ -18,4 +18,8 @@ module.exports = app => {
       }
     })
   })
+
+  app.post('/song', (req, res) => {
+    console.log(req.body)
+  })
 }

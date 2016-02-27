@@ -28,7 +28,7 @@ function requestSongs(query) {
   }
 }
 
-export default function fetchSongs(query) {
+export function fetchSongs(query) {
   return dispatch => {
     dispatch(requestSongs(query))
     dispatch(updateQuery(query))
