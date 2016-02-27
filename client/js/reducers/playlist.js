@@ -4,7 +4,8 @@ export default function playlist(state = {}, action) {
       return Object.assign({}, state, {
         saveChannelPending: true,
         saveChannelSucceeded: null,
-        saveChannelFailure: null
+        saveChannelFailure: null,
+        channel: action.channel
       })
     case 'SAVE_CHANNEL_SUCCESS':
       return Object.assign({}, state, {

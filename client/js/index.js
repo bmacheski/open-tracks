@@ -6,6 +6,8 @@ import App from './containers/App'
 import LandingContainer from './containers/LandingContainer'
 import HomeContainer from './containers/HomeContainer'
 import configure from './store'
+import SearchContainer from './containers/SearchContainer'
+import PlayList from './components/PlayList'
 
 import io from 'socket.io-client'
 export const socket = io('http://localhost:3000')
@@ -17,7 +19,10 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={LandingContainer} />
-        <Route path='/home/:room' component={HomeContainer} />
+        <Route path='/home/:channel' component={HomeContainer}>
+          <IndexRoute component={SearchContainer} />
+          <Route path='/home/:channel/playlist' component={PlayList} />
+        </Route>
       </Route>
     </Router>
   </Provider>, document.getElementById('app')

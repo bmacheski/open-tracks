@@ -4,7 +4,6 @@ import CreateRoom from '../components/CreateRoom'
 
 class LandingContainer extends Component {
   render() {
-    const { children } = this.props
     return <CreateRoom {...this.props} />
   }
 }

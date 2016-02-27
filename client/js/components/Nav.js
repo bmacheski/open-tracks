@@ -4,7 +4,7 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <nav></nav>
+        <nav>Open Tracks</nav>
       </div>
     )
   }

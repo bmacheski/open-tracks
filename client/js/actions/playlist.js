@@ -3,14 +3,14 @@ import { browserHistory } from 'react-router'
 
 export function createChannel(channel) {
   return dispatch => {
-    dispatch({ type: 'SAVE_CHANNEL' })
+    dispatch({ type: 'SAVE_CHANNEL', channel: channel })
     return axios
       .post('/channel', { channel: channel })
       .then(res => {
           dispatch({ type: 'SAVE_CHANNEL_SUCCESS' })
           browserHistory.push(`/home/${channel}`)
       })
-      .catch(err => dispatch({ type: 'SAVE_CHANNEL_FAILURE' }))
+      .catch(err => console.log(err))
   }
 }
 

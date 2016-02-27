@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { createSong } from '../actions/playlist'
-import Tabs from './Tabs'
 import SearchInput from './SearchInput'
+import Tabs from './Tabs'
 
-class Home extends Component {
+class Search extends Component {
   handleClick(song) {
     const { dispatch } = this.props
     let title = song.title
@@ -30,7 +29,6 @@ class Home extends Component {
     if (query) {
       return (
         <div>
-          <Tabs />
           <SearchInput dispatch={dispatch} />
           <ul className="search-results">{this.renderSearchResults()}</ul>
         </div>
@@ -38,11 +36,10 @@ class Home extends Component {
     }
     return (
       <div>
-        <Tabs />
         <SearchInput dispatch={dispatch} />
       </div>
     )
   }
 }
 
-export default Home
+export default Search
