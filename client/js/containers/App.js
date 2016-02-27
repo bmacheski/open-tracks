@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import React, { Component, PropTypes } from 'react'
-import NavContainer from './NavContainer'
+import Nav from '../components/Nav'
 import HomeContainer from './HomeContainer'
 import PlayerContainer from './PlayerContainer'
 
@@ -13,7 +13,7 @@ class App extends Component {
 
     return (
       <div>
-        <NavContainer />
+        <Nav />
         {children}
       </div>
     )

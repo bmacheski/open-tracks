@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 class Nav extends Component {
   render() {
     return (
       <div>
-        <nav>Open Tracks</nav>
+        <nav>
+          <Link to='/'>Open Tracks</Link>
+        </nav>
       </div>
     )
   }
