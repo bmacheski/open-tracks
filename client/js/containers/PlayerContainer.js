@@ -4,9 +4,21 @@ import Player from '../components/Player'
 
 class PlayerContainer extends Component {
   render() {
-    const { children } = this.props
-    return <Player />
+    const { children, playlistSongs } = this.props
+    { return playlistSongs === undefined ?
+      <div /> :
+      <Player {...this.props} />
+    }
   }
 }
 
-export default connect()(PlayerContainer)
+function mapStateToProps(state) {
+  const { channel } = state.playlist
+  const playlistSongs = state.playlist[channel]
+
+  return {
+    playlistSongs
+  }
+}
+
+export default connect(mapStateToProps)(PlayerContainer)

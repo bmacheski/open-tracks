@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchInput from './SearchInput'
 import Tabs from './Tabs'
 import { createSong } from '../actions/playlist'
+import { changeSong } from '../actions/player'
 
 class Search extends Component {
   handleClick(song) {
@@ -9,6 +10,7 @@ class Search extends Component {
     let title = song.title
     let streamUrl = song.stream_url
     dispatch(createSong(title, streamUrl))
+    dispatch(changeSong(title, streamUrl))
   }
 
   renderSearchResults() {
