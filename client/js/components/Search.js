@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SearchInput from './SearchInput'
 import Tabs from './Tabs'
+import { createSong } from '../actions/playlist'
 
 class Search extends Component {
   handleClick(song) {
@@ -26,19 +27,17 @@ class Search extends Component {
 
   render() {
     const { songs, query, dispatch } = this.props
-    if (query) {
-      return (
+    { return (query) ? (
         <div>
           <SearchInput dispatch={dispatch} />
           <ul className="search-results">{this.renderSearchResults()}</ul>
         </div>
+      ) : (
+        <div>
+          <SearchInput dispatch={dispatch} />
+        </div>
       )
     }
-    return (
-      <div>
-        <SearchInput dispatch={dispatch} />
-      </div>
-    )
   }
 }
 

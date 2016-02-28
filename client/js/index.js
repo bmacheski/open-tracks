@@ -7,7 +7,7 @@ import LandingContainer from './containers/LandingContainer'
 import HomeContainer from './containers/HomeContainer'
 import configure from './store'
 import SearchContainer from './containers/SearchContainer'
-import PlayList from './components/PlayList'
+import PlayListContainer from './containers/PlaylistContainer'
 
 import io from 'socket.io-client'
 export const socket = io('http://localhost:3000')
@@ -21,7 +21,7 @@ ReactDOM.render(
         <IndexRoute component={LandingContainer} />
         <Route path='/home/:channel' component={HomeContainer}>
           <IndexRoute component={SearchContainer} />
-          <Route path='/home/:channel/playlist' component={PlayList} />
+          <Route path='/home/:channel/playlist' component={PlayListContainer} />
         </Route>
       </Route>
     </Router>

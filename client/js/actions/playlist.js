@@ -15,13 +15,26 @@ export function createChannel(channel) {
 }
 
 export function createSong(title, streamUrl) {
-  return dispatch => {
-    dispatch({ type: 'SAVE_SONG' })
+  return (dispatch, getState) => {
+    const { channel } = getState().playlist
+    let song = { title: title, streamUrl: streamUrl, channel: channel }
+    dispatch({ type: 'SAVE_SONG', channel: channel, song: song })
     return axios
-      .post('/song', { title: title, streamUrl: streamUrl })
+      .post('/song', song)
+      .then(res => dispatch({ type: 'UPDATE_PLAYLIST' }))
+      .catch(err => console.log(err))
+  }
+}
+
+export function fetchPlaylistSongs() {
+  return (dispatch, getState) => {
+    const { channel } = getState().playlist
+    return axios
+      .get(`/playlist/${channel}`)
       .then(res => {
-          dispatch({ type: 'UPDATE_PLAYLIST' })
+        dispatch({ type: 'RECEIVE_PLAYLIST_SONGS', songs: res.data.items })
       })
       .catch(err => console.log(err))
   }
 }
+
