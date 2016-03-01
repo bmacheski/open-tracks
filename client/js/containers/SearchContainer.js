@@ -10,7 +10,7 @@ class SearchContainer extends Component {
 
 function mapStateToProps(state) {
   const { songs } = state
-  const query = state.query ? state.query : ''
+  const query = songs.query ? songs.query : ''
 
   return {
     songs,

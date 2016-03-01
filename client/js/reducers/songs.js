@@ -29,6 +29,10 @@ export default function songs(state = {}, action) {
       return Object.assign({}, state, {
         [action.query]: song(state[action.query], action)
       })
+    case 'UPDATE_QUERY':
+      return Object.assign({}, state, {
+        query: action.query
+      })
     default:
       return state
   }
