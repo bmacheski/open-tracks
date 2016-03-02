@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { createChannel } from '../actions/playlist'
+import { createChannel, joinChannel, fetchPlaylistSongs } from '../actions/playlist'
 
 class CreateRoom extends Component {
   constructor(props) {
     super(props)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.handleCreateRoom = this.handleCreateRoom.bind(this)
+    this.handleJoinRoom = this.handleJoinRoom.bind(this)
   }
 
-  handleKeyPress(e) {
+  handleCreateRoom(e) {
     const { dispatch } = this.props
     if (e.charCode === 13) {
       let channel = e.currentTarget.value
@@ -15,12 +16,26 @@ class CreateRoom extends Component {
     }
   }
 
+  handleJoinRoom(e) {
+    const { dispatch } = this.props
+    if (e.charCode === 13) {
+      let channel = e.currentTarget.value
+      dispatch(joinChannel(channel))
+      dispatch(fetchPlaylistSongs())
+    }
+  }
+
   render() {
     return (
       <div>
         <h3 className="create-title"> Create a room </h3>
-        <div className="input-field">
-          <input onKeyPress={this.handleKeyPress} />
+        <div className="input-field-home">
+          <input onKeyPress={this.handleCreateRoom} />
+        </div>
+
+        <h3 className="create-title"> Join a room </h3>
+        <div className="input-field-home">
+          <input onKeyPress={this.handleJoinRoom} />
         </div>
       </div>
     )

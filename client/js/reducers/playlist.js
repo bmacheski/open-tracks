@@ -8,6 +8,10 @@ function playlist(state = initialState, action) {
       return Object.assign({}, state, {
         items: [...state.items, action.song]
       })
+    case 'RECEIVE_PLAYLIST_SONGS':
+      return Object.assign({}, state, {
+        items: [...state.items, ...action.songs]
+      })
     default:
       return state;
   }
@@ -40,7 +44,11 @@ export default function playlists(state = {}, action) {
       })
     case 'RECEIVE_PLAYLIST_SONGS':
       return Object.assign({}, state, {
-        songs: [...action.songs]
+        [action.channel]: playlist(state[action.channel], action)
+      })
+    case 'JOIN_CHANNEL':
+      return Object.assign({}, state, {
+        channel: action.channel
       })
     default:
       return state

@@ -11,10 +11,11 @@ class SearchContainer extends Component {
 function mapStateToProps(state) {
   const { songs } = state
   const query = songs.query ? songs.query : ''
-
+  const { open } = state.navigator
   return {
     songs,
-    query
+    query,
+    open
   }
 }
 

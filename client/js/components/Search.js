@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import SearchInput from './SearchInput'
-import Tabs from './Tabs'
+import AppBar from 'material-ui/lib/app-bar'
 import { createSong } from '../actions/playlist'
-import { changeSong } from '../actions/player'
+import LeftNav from 'material-ui/lib/left-nav';
 
 class Search extends Component {
   handleClick(song) {
@@ -10,7 +10,6 @@ class Search extends Component {
     let title = song.title
     let streamUrl = song.stream_url
     dispatch(createSong(title, streamUrl))
-    dispatch(changeSong(title, streamUrl))
   }
 
   renderSearchResults() {
@@ -28,19 +27,18 @@ class Search extends Component {
   }
 
   render() {
-    const { songs, query, dispatch } = this.props
-    { return (query) ? (
-        <div>
-          <SearchInput dispatch={dispatch} />
-          <ul className="search-results">{this.renderSearchResults()}</ul>
-        </div>
-      ) : (
-        <div>
-          <SearchInput dispatch={dispatch} />
-        </div>
-      )
-    }
+      const { query, dispatch, open } = this.props
+      { return (query) ? (
+          <LeftNav width={500} openRight={true} open={open} >
+            <SearchInput dispatch={dispatch} />
+            <ul className="search-results">{this.renderSearchResults()}</ul>
+           </LeftNav>
+        ) : (
+         <LeftNav width={500} openRight={true} open={open} >
+            <SearchInput dispatch={dispatch} />
+          </LeftNav>
+        )
+      }
   }
 }
-
 export default Search

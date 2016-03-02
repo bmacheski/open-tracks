@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { fetchPlaylistSongs } from '../actions/playlist'
 
 class Playlist extends Component {
-  componentWillMount() {
-    const { dispatch } = this.props
-    dispatch(fetchPlaylistSongs())
-  }
+  // componentWillMount() {
+  //   const { dispatch } = this.props
+  //   dispatch(fetchPlaylistSongs())
+  // }
 
   renderPlaylist() {
     const { items } = this.props.playlistSongs

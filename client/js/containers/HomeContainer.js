@@ -1,14 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Tabs from '../components/Tabs'
+import { receieveNewSong } from '../actions/playlist'
+import { socket } from '../io'
+import Playlist from '../components/Playlist'
+import Nav from '../components/Nav'
+import PlayerContainer from './PlayerContainer'
+import PlaylistContainer from './PlaylistContainer'
+import SearchContainer from './SearchContainer'
 
 class HomeContainer extends Component {
   render() {
     const { children } = this.props
+
     return (
       <div>
-        <Tabs {...this.props} />
-        {children}
+        <Nav {...this.props}/>
+        <SearchContainer />
+        <PlaylistContainer />
+        <PlayerContainer />
       </div>
     )
   }
@@ -17,8 +26,10 @@ class HomeContainer extends Component {
 function mapStateToProps(state) {
   const { channel } = state.playlist
 
+  const playlistSongs = state.playlist[channel] ? state.playlist[channel] : []
   return {
-    channel
+    channel,
+    playlistSongs
   }
 }
 

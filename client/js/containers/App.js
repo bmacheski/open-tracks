@@ -13,9 +13,7 @@ class App extends Component {
 
     return (
       <div>
-        <Nav />
         {children}
-        <PlayerContainer />
       </div>
     )
   }
