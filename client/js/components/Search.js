@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import SearchInput from './SearchInput'
-import AppBar from 'material-ui/lib/app-bar'
 import { createSong } from '../actions/playlist'
 import LeftNav from 'material-ui/lib/left-nav';
 
@@ -27,18 +26,24 @@ class Search extends Component {
   }
 
   render() {
-      const { query, dispatch, open } = this.props
-      { return (query) ? (
-          <LeftNav width={500} openRight={true} open={open} >
-            <SearchInput dispatch={dispatch} />
-            <ul className="search-results">{this.renderSearchResults()}</ul>
-           </LeftNav>
-        ) : (
-         <LeftNav width={500} openRight={true} open={open} >
-            <SearchInput dispatch={dispatch} />
-          </LeftNav>
-        )
-      }
+    const { query, dispatch, open } = this.props
+    { return (query) ? (
+        <LeftNav
+          width={500}
+          openRight={true}
+          open={open}>
+          <SearchInput dispatch={dispatch} />
+          <ul className="search-results">{this.renderSearchResults()}</ul>
+        </LeftNav>
+      ) : (
+        <LeftNav
+        width={500}
+        openRight={true}
+        open={open}>
+          <SearchInput dispatch={dispatch} />
+        </LeftNav>
+      )
+    }
   }
 }
 export default Search

@@ -45,5 +45,6 @@ module.exports = app => {
         song.save()
         items.save()
       })
+    res.status(200).send({ message: 'Song saved successfully.'})
   })
 }

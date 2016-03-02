@@ -39,10 +39,8 @@ export default function playlists(state = {}, action) {
         saveChannelFailure: true
       })
     case 'SAVE_SONG':
-      return Object.assign({}, state, {
-        [action.channel]: playlist(state[action.channel], action)
-      })
     case 'RECEIVE_PLAYLIST_SONGS':
+    case 'RECEIVE_NEW_SONG':
       return Object.assign({}, state, {
         [action.channel]: playlist(state[action.channel], action)
       })

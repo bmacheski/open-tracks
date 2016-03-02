@@ -30,7 +30,7 @@ export function createSong(title, streamUrl) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
     let song = { title: title, streamUrl: streamUrl, channel: channel }
-    socket.emit('song added', song)
+    socket.emit('new song', song)
     dispatch({ type: 'SAVE_SONG', channel: channel, song: song })
     return axios
       .post('/song', song)
@@ -46,10 +46,16 @@ export function fetchPlaylistSongs(chan) {
     return axios
       .get(`/playlist/${playlistChannel}`)
       .then(res => {
-        let song = res.data.items.map((s) => { return { title: s.title, streamUrl: s.track }})
+        let song = res.data.items.map(s => { return { title: s.title, streamUrl: s.track }})
         dispatch({ type: 'RECEIVE_PLAYLIST_SONGS', songs: song, channel: playlistChannel })
       })
       .catch(err => { throw err })
   }
 }
 
+export function receiveNewSong(song) {
+  return {
+    type: 'RECEIVE_NEW_SONG',
+    song: song
+  }
+}
