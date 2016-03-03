@@ -8,7 +8,6 @@ injectTapEventPlugin();
 
 class Nav extends Component {
   toggleNav() {
-    console.log('hello')
     const { dispatch } = this.props
     dispatch(toggleNav())
   }

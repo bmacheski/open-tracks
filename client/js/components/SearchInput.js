@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { fetchSongs } from '../actions/songs'
+import TextField from 'material-ui/lib/text-field'
 
 class SearchInput extends Component {
   handleKeyUp(e) {
-    e.preventDefault()
     const { dispatch } = this.props
-    let query = this.refs.searchInput.value
+    let query = this.refs.searchInput.input.value
     if (e.keyCode === 13 && query) {
       dispatch(fetchSongs(query))
     }
@@ -13,17 +13,19 @@ class SearchInput extends Component {
 
   render() {
     return (
-      <div className="input-field">
-        <input
+      <div>
+        <label>
+          <i className="material-icons search-icon">search</i>
+        </label>
+        <TextField
           ref="searchInput"
           type="text"
           id="search"
-          onKeyUp={this.handleKeyUp.bind(this)} />
-        <label>
-          <i className="material-icons">search</i>
-        </label>
+          onKeyDown={this.handleKeyUp.bind(this)}>
+        </TextField>
       </div>
     )
   }
 }
+
 export default SearchInput

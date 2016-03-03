@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { createChannel, joinChannel, fetchPlaylistSongs } from '../actions/playlist'
+import TextField from 'material-ui/lib/text-field'
 
 class CreateRoom extends Component {
   constructor(props) {
@@ -27,16 +28,17 @@ class CreateRoom extends Component {
 
   render() {
     return (
-      <div>
-        <h3 className="create-title"> Create a room </h3>
-        <div className="input-field-home">
-          <input onKeyPress={this.handleCreateRoom} />
-        </div>
-
-        <h3 className="create-title"> Join a room </h3>
-        <div className="input-field-home">
-          <input onKeyPress={this.handleJoinRoom} />
-        </div>
+      <div className='create-wrapper'>
+        <h3 className="create-title">Create a room</h3>
+        <TextField
+          className="input-field-home"
+          onKeyPress={this.handleCreateRoom}>
+        </TextField>
+        <h3 className="create-title">Join a room</h3>
+        <TextField
+          className="input-field-home"
+          onKeyPress={this.handleJoinRoom}>
+        </TextField>
       </div>
     )
   }

@@ -4,7 +4,6 @@ import Nav from '../components/Nav'
 import HomeContainer from './HomeContainer'
 import PlayerContainer from './PlayerContainer'
 
-import 'bower/Materialize/dist/css/materialize.min.css'
 import '../styles.css'
 
 class App extends Component {

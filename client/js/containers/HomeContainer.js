@@ -1,14 +1,21 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { receieveNewSong } from '../actions/playlist'
-import { socket } from '../io'
 import Playlist from '../components/Playlist'
 import Nav from '../components/Nav'
 import PlayerContainer from './PlayerContainer'
 import PlaylistContainer from './PlaylistContainer'
 import SearchContainer from './SearchContainer'
+import { socket } from '../io'
 
 class HomeContainer extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+    socket.on('new song added', (song) => {
+      dispatch(receieveNewSong(song))
+    })
+  }
+
   render() {
     const { children } = this.props
 
@@ -33,4 +40,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(HomeContainer)
+export default connect(
+  mapStateToProps
+)(HomeContainer)

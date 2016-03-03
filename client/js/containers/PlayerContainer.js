@@ -21,4 +21,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PlayerContainer)
+export default connect(
+  mapStateToProps
+)(PlayerContainer)

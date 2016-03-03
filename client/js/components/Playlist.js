@@ -1,34 +1,39 @@
 import React, { Component } from 'react'
-import { fetchPlaylistSongs } from '../actions/playlist'
+import { fetchPlaylistSongs, receieveNewSong } from '../actions/playlist'
+import List from 'material-ui/lib/lists/list'
+import ListItem from 'material-ui/lib/lists/list-item'
+import Divider from 'material-ui/lib/divider'
 
 class Playlist extends Component {
-  // componentWillMount() {
-  //   const { dispatch } = this.props
-  //   dispatch(fetchPlaylistSongs())
-  // }
-
   renderPlaylist() {
     const { items } = this.props.playlistSongs
-    return items.map((song, i) => {
-      return (
-        <li key={i}>
-          <span>{i + 1})</span>
-          <span> {song.title}</span>
-        </li>
-      )
-    })
+    if (items) {
+      return items.map((song, i) => {
+        return (
+          <div key={i}>
+            <ListItem
+              primaryText={song.title}>
+            </ListItem>
+            <Divider inset={true} />
+          </div>
+        )
+      })
+    }
   }
 
   render() {
     { return this.props.playlistSongs.items ?
       (
-        <div className="playlist-container">
-          <h3>Playlist</h3>
-          {this.renderPlaylist()}
+        <div className="playlist-wrapper">
+          <List>
+            <h3>Playlist</h3>
+            {this.renderPlaylist()}
+          </List>
         </div>
       ) :
-      <h3>There aren't any songs yet! Go add one.</h3>
+      <h2>There aren't any songs yet! Go add one.</h2>
     }
   }
 }
+
 export default Playlist

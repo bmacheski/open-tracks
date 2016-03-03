@@ -33,10 +33,7 @@ module.exports = {
     ]
   },
   resolve: {
-    modulesDirectories: ['node_modules', 'client/bower_components'],
-    alias: {
-      'bower': __dirname + '/client/bower_components'
-    }
+    modulesDirectories: ['node_modules']
   },
   plugins: [
     new notifier()

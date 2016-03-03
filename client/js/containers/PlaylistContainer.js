@@ -17,4 +17,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PlaylistContainer)
+export default connect(
+  mapStateToProps
+)(PlaylistContainer)

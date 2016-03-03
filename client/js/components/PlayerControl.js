@@ -14,7 +14,7 @@ class PlayerControl extends Component {
         className='controls-container'
         onClick={this.togglePlay.bind(this)}>
         <PlayButton className='play-btn' {...this.props} />
-        <h2>{song.title}</h2>
+        <h3>{song.title}</h3>
         <Timer {...this.props} />
         <Progress {...this.props} />
       </div>
