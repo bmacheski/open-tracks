@@ -5,16 +5,32 @@ import PlayerControl from './PlayerControl'
 
 class Player extends Component {
   render() {
+    const { hasJoined } = this.props
     const song = this.props.playlistSongs.items[0]
-    return (
-      <div className="player">
-        <SoundPlayerContainer
-          streamUrl={song.streamUrl}
-          clientId={client_id}>
-          <PlayerControl song={song} />
-        </SoundPlayerContainer>
-      </div>
-    )
+    if (!hasJoined) {
+      return (
+        <div className="player">
+          <SoundPlayerContainer
+            streamUrl={song.streamUrl}
+            clientId={client_id}>
+            <PlayerControl
+            song={song}
+            hasJoined={hasJoined} />
+          </SoundPlayerContainer>
+        </div>
+      )
+    } else {
+      return (
+        <div className="player">
+          <SoundPlayerContainer
+            clientId={client_id}>
+            <PlayerControl
+              song={song}
+              hasJoined={hasJoined} />
+          </SoundPlayerContainer>
+        </div>
+      )
+    }
   }
 }
 

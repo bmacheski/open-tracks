@@ -17,7 +17,7 @@ function playlist(state = initialState, action) {
   }
 }
 
-export default function playlists(state = {}, action) {
+export default function playlists(state = { hasJoined: false }, action) {
   switch (action.type) {
     case 'SAVE_CHANNEL':
       return Object.assign({}, state, {
@@ -46,7 +46,8 @@ export default function playlists(state = {}, action) {
       })
     case 'JOIN_CHANNEL':
       return Object.assign({}, state, {
-        channel: action.channel
+        channel: action.channel,
+        hasJoined: true
       })
     default:
       return state

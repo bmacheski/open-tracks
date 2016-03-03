@@ -8,17 +8,36 @@ class PlayerControl extends Component {
   }
 
   render() {
-    let { song } = this.props
-    return (
-      <div
-        className='controls-container'
-        onClick={this.togglePlay.bind(this)}>
-        <PlayButton className='play-btn' {...this.props} />
-        <h3>{song.title}</h3>
-        <Timer {...this.props} />
-        <Progress {...this.props} />
-      </div>
-    )
+    let { song, hasJoined } = this.props
+    if (!hasJoined) {
+      return (
+        <div
+          className='controls-container'
+          onClick={this.togglePlay.bind(this)}>
+          <PlayButton className='play-btn' {...this.props} />
+          <h3>{song.title}</h3>
+          <Timer {...this.props} />
+          <Progress {...this.props} />
+        </div>
+      )
+    } else {
+      if (song && song.length > 0) {
+        return (
+          <div className='controls-container'>
+            <h3>{song.title}</h3>
+            <Timer {...this.props} />
+            <Progress {...this.props} />
+          </div>
+        )
+      } else {
+        return (
+          <div className='controls-container'>
+            <Timer {...this.props} />
+            <Progress {...this.props} />
+          </div>
+        )
+      }
+    }
   }
 }
 
