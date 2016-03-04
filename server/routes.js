@@ -16,7 +16,7 @@ module.exports = app => {
             res.send({ data: 'Done' })
           })
         } else {
-          res.status(409).send({ data: 'Already exists' })
+          res.status(409).send({ message: 'That channel already exists.' })
         }
       })
   })

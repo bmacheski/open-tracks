@@ -8,4 +8,15 @@ class LandingContainer extends Component {
   }
 }
 
-export default connect()(LandingContainer)
+function mapStateToProps(state) {
+  const { saveChannelFailure, error } = state.playlist
+
+  return {
+    saveChannelFailure,
+    error
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(LandingContainer)

@@ -13,7 +13,9 @@ export function createChannel(channel) {
           dispatch({ type: 'SAVE_CHANNEL_SUCCESS' })
           browserHistory.push(`/home/${channel}`)
       })
-      .catch(err => { throw err })
+      .catch(err => {
+        dispatch({ type: 'SAVE_CHANNEL_FAILURE', error: err.data.message })
+      })
   }
 }
 
@@ -50,6 +52,12 @@ export function fetchPlaylistSongs(chan) {
         dispatch({ type: 'RECEIVE_PLAYLIST_SONGS', songs: song, channel: playlistChannel })
       })
       .catch(err => { throw err })
+  }
+}
+
+export function resetChannel() {
+  return {
+    type: 'RESET_CHANNEL'
   }
 }
 

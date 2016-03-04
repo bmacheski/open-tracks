@@ -25,8 +25,7 @@ class PlayerControl extends Component {
   }
 
   render() {
-    let { song, hasJoined, soundCloudAudio, time } = this.props
-
+    let { song, hasJoined, soundCloudAudio, time, duration } = this.props
     if (!hasJoined) {
       soundCloudAudio.on('timeupdate', this.handleTimeUpdate)
       return (
@@ -36,7 +35,9 @@ class PlayerControl extends Component {
           ref='playercontrol'>
           <PlayButton className='play-btn' {...this.props} />
           <h3>{song.title}</h3>
-          <Timer currentTime={time} />
+          <Timer
+            currentTime={time}
+            duration={duration} />
           <Progress
             value={this.props.currentTime} />
         </div>
@@ -46,14 +47,18 @@ class PlayerControl extends Component {
         return (
           <div className='controls-container'>
             <h3>{song.title}</h3>
-            <Timer currentTime={time} />
+            <Timer
+              currentTime={time}
+              duration={duration} />
             <Progress value={this.props.currentTime} />
           </div>
         )
       } else {
         return (
           <div className='controls-container'>
-            <Timer currentTime={time} />
+            <Timer
+              currentTime={time}
+              duration={duration} />
             <Progress value={this.props.currentTime} />
           </div>
         )
