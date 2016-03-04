@@ -19,10 +19,11 @@ class Nav extends Component {
       <div>
         <AppBar
           title={title}
-          onLeftIconButtonTouchTap={this.toggleNav.bind(this)} >
+          onLeftIconButtonTouchTap={this.toggleNav.bind(this)}>
         </AppBar>
       </div>
     )
   }
 }
+
 export default Nav

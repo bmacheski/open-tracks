@@ -7,9 +7,8 @@ import { socket } from '../io'
 class Player extends Component {
   componentDidMount() {
     const { dispatch } = this.props
-    console.log('mounted')
+
     socket.on('client update', t => {
-      console.log(t)
       dispatch(receiveNewTime(t))
     })
   }
@@ -17,6 +16,7 @@ class Player extends Component {
   render() {
     const { hasJoined, dispatch, time } = this.props
     const song = this.props.playlistSongs.items[0]
+
     if (!hasJoined) {
       return (
         <div className="player">

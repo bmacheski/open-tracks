@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { PlayButton, Progress, Timer } from 'react-soundplayer/components'
-import ReactDOM from 'react-dom'
-import { updateCurrentPlayerTime, receiveNewTime } from '../actions/player'
+import { updateCurrentPlayerTime } from '../actions/player'
 import { socket } from '../io'
 
 class PlayerControl extends Component {
@@ -12,8 +11,8 @@ class PlayerControl extends Component {
 
   handleTimeUpdate() {
     const { dispatch, time } = this.props
-    let t = Math.floor(this.props.currentTime)
-    console.log()
+    const t = Math.floor(this.props.currentTime)
+
     if (t !== time) {
       dispatch(updateCurrentPlayerTime(t))
     }
@@ -21,12 +20,13 @@ class PlayerControl extends Component {
 
   togglePlay() {
     let { soundCloudAudio, playing } = this.props
+
     playing ? soundCloudAudio.pause() : soundCloudAudio.play()
   }
 
   render() {
     let { song, hasJoined, soundCloudAudio, time } = this.props
-    console.log(time)
+
     if (!hasJoined) {
       soundCloudAudio.on('timeupdate', this.handleTimeUpdate)
       return (
@@ -46,7 +46,7 @@ class PlayerControl extends Component {
         return (
           <div className='controls-container'>
             <h3>{song.title}</h3>
-            <Timer currentTime={time}  />
+            <Timer currentTime={time} />
             <Progress value={this.props.currentTime} />
           </div>
         )

@@ -5,6 +5,7 @@ import Player from '../components/Player'
 class PlayerContainer extends Component {
   render() {
     const { children, playlistSongs } = this.props
+
     { return playlistSongs === undefined ?
       <div /> :
       <Player {...this.props} />
@@ -15,8 +16,8 @@ class PlayerContainer extends Component {
 function mapStateToProps(state) {
   const { channel, hasJoined } = state.playlist
   const { time } = state.player
-  console.log(time)
   const playlistSongs = state.playlist[channel]
+
   return {
     playlistSongs,
     hasJoined,

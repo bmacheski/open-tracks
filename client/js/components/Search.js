@@ -8,13 +8,15 @@ import ListItem from 'material-ui/lib/lists/list-item'
 class Search extends Component {
   handleClick(song) {
     const { dispatch } = this.props
-    let title = song.title
-    let streamUrl = song.stream_url
+    const title = song.title
+    const streamUrl = song.stream_url
+
     dispatch(createSong(title, streamUrl))
   }
 
   renderSearchResults() {
     const { songs, query } = this.props
+
     return (
       <div>
         <List>
@@ -34,13 +36,20 @@ class Search extends Component {
 
   render() {
     const { query, dispatch, open } = this.props
+
     { return (query) ? (
-        <LeftNav width={500} openRight={true} open={open}>
+        <LeftNav
+          width={500}
+          openRight={true}
+          open={open}>
           <SearchInput dispatch={dispatch} />
           <ul className="search-results">{this.renderSearchResults()}</ul>
         </LeftNav>
       ) : (
-       <LeftNav width={500} openRight={true} open={open} >
+        <LeftNav
+          width={500}
+          openRight={true}
+          open={open}>
           <SearchInput dispatch={dispatch} />
         </LeftNav>
       )
