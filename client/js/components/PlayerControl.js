@@ -1,23 +1,44 @@
 import React, { Component } from 'react'
 import { PlayButton, Progress, Timer } from 'react-soundplayer/components'
+import ReactDOM from 'react-dom'
+import { updateCurrentPlayerTime, receiveNewTime } from '../actions/player'
+import { socket } from '../io'
 
 class PlayerControl extends Component {
+  constructor(props) {
+    super(props)
+    this.handleTimeUpdate = this.handleTimeUpdate.bind(this)
+  }
+
+  handleTimeUpdate() {
+    const { dispatch, time } = this.props
+    let t = Math.floor(this.props.currentTime)
+    console.log()
+    if (t !== time) {
+      dispatch(updateCurrentPlayerTime(t))
+    }
+  }
+
   togglePlay() {
     let { soundCloudAudio, playing } = this.props
     playing ? soundCloudAudio.pause() : soundCloudAudio.play()
   }
 
   render() {
-    let { song, hasJoined } = this.props
+    let { song, hasJoined, soundCloudAudio, time } = this.props
+    console.log(time)
     if (!hasJoined) {
+      soundCloudAudio.on('timeupdate', this.handleTimeUpdate)
       return (
         <div
           className='controls-container'
-          onClick={this.togglePlay.bind(this)}>
+          onClick={this.togglePlay.bind(this)}
+          ref='playercontrol'>
           <PlayButton className='play-btn' {...this.props} />
           <h3>{song.title}</h3>
-          <Timer {...this.props} />
-          <Progress {...this.props} />
+          <Timer currentTime={time} />
+          <Progress
+            value={this.props.currentTime} />
         </div>
       )
     } else {
@@ -25,15 +46,15 @@ class PlayerControl extends Component {
         return (
           <div className='controls-container'>
             <h3>{song.title}</h3>
-            <Timer {...this.props} />
-            <Progress {...this.props} />
+            <Timer currentTime={time}  />
+            <Progress value={this.props.currentTime} />
           </div>
         )
       } else {
         return (
           <div className='controls-container'>
-            <Timer {...this.props} />
-            <Progress {...this.props} />
+            <Timer currentTime={time} />
+            <Progress value={this.props.currentTime} />
           </div>
         )
       }

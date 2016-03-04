@@ -2,19 +2,32 @@ import React, { Component } from 'react'
 import { SoundPlayerContainer } from 'react-soundplayer/addons'
 import { client_id } from '../../../secrets'
 import PlayerControl from './PlayerControl'
+import { socket } from '../io'
 
 class Player extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+    console.log('mounted')
+    socket.on('client update', t => {
+      console.log(t)
+      dispatch(receiveNewTime(t))
+    })
+  }
+
   render() {
-    const { hasJoined } = this.props
+    const { hasJoined, dispatch, time } = this.props
     const song = this.props.playlistSongs.items[0]
     if (!hasJoined) {
       return (
         <div className="player">
           <SoundPlayerContainer
+            ref="player"
             streamUrl={song.streamUrl}
             clientId={client_id}>
             <PlayerControl
             song={song}
+            time={time}
+            dispatch={dispatch}
             hasJoined={hasJoined} />
           </SoundPlayerContainer>
         </div>
@@ -25,6 +38,7 @@ class Player extends Component {
           <SoundPlayerContainer
             clientId={client_id}>
             <PlayerControl
+              time={time}
               song={song}
               hasJoined={hasJoined} />
           </SoundPlayerContainer>

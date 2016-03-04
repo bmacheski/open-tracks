@@ -3,6 +3,7 @@ import { fetchPlaylistSongs, receieveNewSong } from '../actions/playlist'
 import List from 'material-ui/lib/lists/list'
 import ListItem from 'material-ui/lib/lists/list-item'
 import Divider from 'material-ui/lib/divider'
+import { socket } from '../io'
 
 class Playlist extends Component {
   renderPlaylist() {

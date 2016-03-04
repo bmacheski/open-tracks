@@ -5,6 +5,7 @@ const initialState = {
 function playlist(state = initialState, action) {
   switch (action.type) {
     case 'SAVE_SONG':
+    case 'RECEIVE_NEW_SONG':
       return Object.assign({}, state, {
         items: [...state.items, action.song]
       })

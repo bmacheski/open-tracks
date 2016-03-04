@@ -13,12 +13,14 @@ class PlayerContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { channel } = state.playlist
+  const { channel, hasJoined } = state.playlist
+  const { time } = state.player
+  console.log(time)
   const playlistSongs = state.playlist[channel]
-  const { hasJoined } = state.playlist
   return {
     playlistSongs,
-    hasJoined
+    hasJoined,
+    time
   }
 }
 

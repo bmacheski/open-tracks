@@ -53,9 +53,10 @@ export function fetchPlaylistSongs(chan) {
   }
 }
 
-export function receiveNewSong(song) {
+export function receiveNewSong(song, channel) {
   return {
     type: 'RECEIVE_NEW_SONG',
-    song: song
+    song: song,
+    channel: channel
   }
 }
