@@ -14,8 +14,34 @@ li {
   height: 50px !important;
 }
 
+#search {
+  width: 90%;
+  position: relative;
+  left: 10%;
+}
+
 .add-button {
   float: right;
+}
+
+.controls-container {
+  margin: 5px;
+}
+
+.create-title {
+  font-size: 30px;
+}
+
+.create-wrapper {
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home {
+  position: relative;
+  left: 500px;
 }
 
 .input-field label i, .create-title {
@@ -24,21 +50,6 @@ li {
   left: 10px;
 }
 
-#search {
-  width: 90%;
-  position: relative;
-  left: 10%;
-}
-
-.home {
-  position: relative;
-  left: 500px;
-}
-
- .create-title {
-  font-size: 30px;
- }
-
 .input-field-home, .playlist-container {
   width: 100% !important;
   height: 60px !important;
@@ -46,6 +57,12 @@ li {
   position: relative;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),
     0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.play-btn {
+  background-color: transparent;
+  border: 1px solid #FC561E;
+  border-radius: 3px;
 }
 
 .playlist-wrapper {
@@ -67,10 +84,18 @@ li {
   border-radius: 3px;
 }
 
+.sb-soundplayer-timer {
+  margin-top: 10px;
+}
+
 .search-icon {
   position: relative;
   left: 20px;
   top: 5px;
+}
+
+.search-results {
+  font-size: 14px !important;
 }
 
 .search-results li {
@@ -84,19 +109,7 @@ li {
   width: 400px;
 }
 
-.play-btn {
-  background-color: transparent;
-  border: 1px solid #FC561E;
-  border-radius: 3px;
-}
-
-.create-wrapper {
-  display: block;
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.controls-container {
-  margin: 5px;
+.song-title {
+  display: inline;
+  margin-left: 20px;
 }

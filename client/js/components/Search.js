@@ -4,14 +4,16 @@ import { createSong } from '../actions/playlist'
 import LeftNav from 'material-ui/lib/left-nav'
 import List from 'material-ui/lib/lists/list'
 import ListItem from 'material-ui/lib/lists/list-item'
+import Avatar from 'material-ui/lib/avatar'
 
 class Search extends Component {
   handleClick(song) {
     const { dispatch } = this.props
     const title = song.title
     const streamUrl = song.stream_url
+    const artworkUrl = song.artwork_url
 
-    dispatch(createSong(title, streamUrl))
+    dispatch(createSong(title, streamUrl, artworkUrl))
   }
 
   renderSearchResults() {
@@ -25,6 +27,7 @@ class Search extends Component {
               <ListItem
                 key={i}
                 primaryText={song.title}
+                leftAvatar={<Avatar src={song.artwork_url} />}
                 onClick={this.handleClick.bind(this, song)}>
               </ListItem>
             )
@@ -39,7 +42,7 @@ class Search extends Component {
 
     { return (query) ? (
         <LeftNav
-          width={500}
+          width={600}
           openRight={true}
           open={open}>
           <SearchInput dispatch={dispatch} />
@@ -47,7 +50,7 @@ class Search extends Component {
         </LeftNav>
       ) : (
         <LeftNav
-          width={500}
+          width={600}
           openRight={true}
           open={open}>
           <SearchInput dispatch={dispatch} />

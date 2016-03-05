@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { PlayButton, Progress, Timer } from 'react-soundplayer/components'
-import { updateCurrentPlayerTime } from '../actions/player'
+import { updateCurrentPlayerTime, updateCurrentPlaylistSong } from '../actions/player'
 import { socket } from '../io'
+import { Cover } from 'react-soundplayer/components'
 
 class PlayerControl extends Component {
   constructor(props) {
     super(props)
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this)
+    this.handleNextPlaylistSong = this.handleNextPlaylistSong.bind(this)
   }
 
   handleTimeUpdate() {
@@ -18,39 +20,49 @@ class PlayerControl extends Component {
     }
   }
 
+  handleNextPlaylistSong() {
+    const { dispatch } = this.props
+
+    dispatch(updateCurrentPlaylistSong())
+  }
+
   togglePlay() {
-    let { soundCloudAudio, playing } = this.props
+    const { soundCloudAudio, playing } = this.props
 
     playing ? soundCloudAudio.pause() : soundCloudAudio.play()
   }
 
   render() {
-    let { song, hasJoined, soundCloudAudio, time, duration } = this.props
+    const { song, hasJoined, soundCloudAudio, time } = this.props
+    const { duration } = soundCloudAudio.audio
+
     if (!hasJoined) {
+      soundCloudAudio.audio.autoplay = true
       soundCloudAudio.on('timeupdate', this.handleTimeUpdate)
+      soundCloudAudio.on('ended', this.handleNextPlaylistSong)
+
       return (
         <div
           className='controls-container'
           onClick={this.togglePlay.bind(this)}
           ref='playercontrol'>
           <PlayButton className='play-btn' {...this.props} />
-          <h3>{song.title}</h3>
+          <h3 className='song-title'>{song.title}</h3>
           <Timer
             currentTime={time}
             duration={duration} />
-          <Progress
-            value={this.props.currentTime} />
+          <Progress {...this.props} />
         </div>
       )
     } else {
       if (song && song.length > 0) {
         return (
           <div className='controls-container'>
-            <h3>{song.title}</h3>
+            <h3 className='song-title'>{song.title}</h3>
             <Timer
               currentTime={time}
               duration={duration} />
-            <Progress value={this.props.currentTime} />
+            <Progress {...this.props} />
           </div>
         )
       } else {
@@ -59,7 +71,7 @@ class PlayerControl extends Component {
             <Timer
               currentTime={time}
               duration={duration} />
-            <Progress value={this.props.currentTime} />
+            <Progress {...this.props} />
           </div>
         )
       }

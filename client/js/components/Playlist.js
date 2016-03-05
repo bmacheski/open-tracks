@@ -3,6 +3,7 @@ import List from 'material-ui/lib/lists/list'
 import ListItem from 'material-ui/lib/lists/list-item'
 import Divider from 'material-ui/lib/divider'
 import { socket } from '../io'
+import Avatar from 'material-ui/lib/avatar'
 
 class Playlist extends Component {
   renderPlaylist() {
@@ -13,7 +14,8 @@ class Playlist extends Component {
         return (
           <div key={i}>
             <ListItem
-              primaryText={song.title}>
+              primaryText={song.title}
+              leftAvatar={<Avatar src={song.artworkUrl} />}>
             </ListItem>
             <Divider inset={true} />
           </div>
@@ -32,7 +34,9 @@ class Playlist extends Component {
           </List>
         </div>
       ) :
-      <h2>There aren't any songs yet! Go add one.</h2>
+      <div className="playlist-wrapper">
+        <h2>There aren't any songs yet! Go add one.</h2>
+      </div>
     }
   }
 }

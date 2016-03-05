@@ -28,12 +28,12 @@ export function joinChannel(channel) {
   }
 }
 
-export function createSong(title, streamUrl) {
+export function createSong(title, streamUrl, artworkUrl) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
-    let song = { title: title, streamUrl: streamUrl, channel: channel }
+    let song = { title: title, streamUrl: streamUrl, channel: channel, artworkUrl: artworkUrl }
     socket.emit('new song', song)
-    dispatch({ type: 'SAVE_SONG', channel: channel, song: song })
+    dispatch({ type: 'SAVE_SONG', channel: channel, song: song, artworkUrl: artworkUrl })
     return axios
       .post('/song', song)
       .then(res => dispatch({ type: 'UPDATE_PLAYLIST' }))

@@ -11,11 +11,15 @@ class Player extends Component {
     socket.on('client update', t => {
       dispatch(receiveNewTime(t))
     })
+
+    socket.on('duration update', t => {
+      dispatch(receiveNewTime(t))
+    })
   }
 
   render() {
-    const { hasJoined, dispatch, time } = this.props
-    const song = this.props.playlistSongs.items[0]
+    const { hasJoined, dispatch, time, songIndex } = this.props
+    const song = this.props.playlistSongs.items[songIndex]
 
     if (!hasJoined) {
       return (
