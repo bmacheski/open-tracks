@@ -51,12 +51,13 @@ li {
 }
 
 .input-field-home, .playlist-container {
-  width: 100% !important;
-  height: 60px !important;
-  display: inline-block;
-  position: relative;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),
     0 2px 10px 0 rgba(0,0,0,0.12);
+  display: inline-block;
+  height: 60px !important;
+  position: relative;
+  width: 100% !important;
+
 }
 
 .play-btn {
@@ -70,11 +71,11 @@ li {
 }
 
 .player {
-  position: fixed;
-  width: 100%;
   background-color: #fff;
   border-top: 1px solid #2D2D11;
   bottom: 0;
+  position: fixed;
+  width: 100%;
 }
 
 .sb-soundplayer-play-icon {
@@ -101,12 +102,19 @@ li {
 .search-results li {
   float: none !important;
   left: 7%;
-  width: 90%;
   position: relative;
+  width: 90%;
 }
 
 .side-nav {
   width: 400px;
+}
+
+.subheader {
+  font-size: 30px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .song-title {

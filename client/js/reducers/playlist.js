@@ -34,6 +34,7 @@ export default function playlists(state = { hasJoined: false }, action) {
         saveChannelFailure: false
       })
     case 'SAVE_CHANNEL_FAILURE':
+    case 'JOIN_CHANNEL_FAILURE':
       return Object.assign({}, state, {
         saveChannelPending: false,
         saveChannelSucceeded: false,

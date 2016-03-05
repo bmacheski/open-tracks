@@ -23,7 +23,6 @@ class CreateRoom extends Component {
     if (e.charCode === 13) {
       let channel = e.currentTarget.value
       dispatch(joinChannel(channel))
-      dispatch(fetchPlaylistSongs())
     }
   }
 

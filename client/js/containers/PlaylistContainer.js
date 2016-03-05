@@ -11,8 +11,8 @@ class PlaylistContainer extends Component {
 function mapStateToProps(state) {
   const { channel } = state.playlist
   const playlistSongs = state.playlist[channel] ? state.playlist[channel] : []
-
   return {
+    channel,
     playlistSongs
   }
 }

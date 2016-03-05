@@ -5,15 +5,16 @@ import { socket } from '../io'
 export function createChannel(channel) {
   return dispatch => {
     const channelObj = { channel: channel }
-    socket.emit('join channel', channelObj)
     dispatch({ type: 'SAVE_CHANNEL', channel: channel })
     return axios
       .post('/channel', channelObj)
       .then(res => {
           dispatch({ type: 'SAVE_CHANNEL_SUCCESS' })
+          socket.emit('join channel', channelObj)
           browserHistory.push(`/home/${channel}`)
       })
       .catch(err => {
+        console.log(err)
         dispatch({ type: 'SAVE_CHANNEL_FAILURE', error: err.data.message })
       })
   }
@@ -22,9 +23,17 @@ export function createChannel(channel) {
 export function joinChannel(channel) {
   return dispatch => {
     const channelObj = { channel: channel }
-    socket.emit('join channel', channelObj)
     dispatch({ type: 'JOIN_CHANNEL', channel: channel })
-    browserHistory.push(`/home/${channel}`)
+    return axios
+      .post('/channel/join', channelObj)
+      .then(res => {
+        dispatch(fetchPlaylistSongs())
+        socket.emit('join channel', channelObj)
+        browserHistory.push(`/home/${channel}`)
+      })
+      .catch(err => {
+        dispatch({ type: 'JOIN_CHANNEL_FAILURE', error: err.data.message })
+      })
   }
 }
 
@@ -48,7 +57,7 @@ export function fetchPlaylistSongs(chan) {
     return axios
       .get(`/playlist/${playlistChannel}`)
       .then(res => {
-        let song = res.data.items.map(s => { return { title: s.title, streamUrl: s.track }})
+        const song = res.data.items.map(s => { return { title: s.title, streamUrl: s.track, artworkUrl: s.artworkUrl }})
         dispatch({ type: 'RECEIVE_PLAYLIST_SONGS', songs: song, channel: playlistChannel })
       })
       .catch(err => { throw err })

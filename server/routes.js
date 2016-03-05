@@ -21,6 +21,19 @@ module.exports = app => {
       })
   })
 
+  app.post('/channel/join', (req, res) => {
+    Playlist
+      .findOne({ channel: req.body.channel },
+        (err, docs) => {
+          if (err) res.send(err)
+          if (!docs) {
+            res.status(409).send({ message: 'That channel does not exist.' })
+        } else {
+          res.status(200).send({ message: 'That room exists.' })
+        }
+      })
+  })
+
   app.get('/playlist/:channel', (req, res) => {
     Playlist
       .findOne({ channel: req.params.channel })
@@ -33,7 +46,8 @@ module.exports = app => {
   app.post('/song', (req, res) => {
     let song = new Song({
       title: req.body.title,
-      track: req.body.streamUrl
+      track: req.body.streamUrl,
+      artworkUrl: req.body.artworkUrl
     })
 
     Playlist
