@@ -1,9 +1,10 @@
 'use strict'
 
-const Playlist = require('./db/playlist.model')
-  , Song       = require('./db/song.model')
+const Playlist = require('../db/playlist.model')
+  , Song       = require('../db/song.model')
 
 module.exports = app => {
+
   app.post('/channel', (req, res) => {
     Playlist
       .findOne({ channel: req.body.channel },

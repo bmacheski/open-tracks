@@ -15,4 +15,4 @@ const server = app.listen(3000, () => {
 const io = socketio.listen(server)
 
 require('./config/serverConfig.js')(app, express)
-require('./io')(io)
+require('./config/io')(io)

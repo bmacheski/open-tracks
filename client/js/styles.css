@@ -66,6 +66,12 @@ li {
   border-radius: 3px;
 }
 
+.playlist-notice {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .playlist-wrapper {
   text-align: center
 }
@@ -111,7 +117,7 @@ li {
 }
 
 .subheader {
-  font-size: 30px;
+  font-size: 15px;
   text-align: left;
   margin-top: 10px;
   margin-bottom: 10px;

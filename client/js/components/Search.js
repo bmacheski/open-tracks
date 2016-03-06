@@ -5,8 +5,15 @@ import LeftNav from 'material-ui/lib/left-nav'
 import List from 'material-ui/lib/lists/list'
 import ListItem from 'material-ui/lib/lists/list-item'
 import Avatar from 'material-ui/lib/avatar'
+import { isMobile } from '../actions/environment'
 
 class Search extends Component {
+  componentWillMount() {
+    const { dispatch } = this.props
+
+    dispatch(isMobile())
+  }
+
   handleClick(song) {
     const { dispatch } = this.props
     const title = song.title
@@ -38,11 +45,12 @@ class Search extends Component {
   }
 
   render() {
-    const { query, dispatch, open } = this.props
+    const { query, dispatch, open, mobile } = this.props
+    const width = (mobile) ? 325 : 500
 
     { return (query) ? (
         <LeftNav
-          width={600}
+          width={width}
           openRight={true}
           open={open}>
           <SearchInput dispatch={dispatch} />
@@ -50,7 +58,7 @@ class Search extends Component {
         </LeftNav>
       ) : (
         <LeftNav
-          width={600}
+          width={width}
           openRight={true}
           open={open}>
           <SearchInput dispatch={dispatch} />
