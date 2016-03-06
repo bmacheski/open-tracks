@@ -34,7 +34,8 @@ class PlayerControl extends Component {
 
   render() {
     const { song, hasJoined, soundCloudAudio, time } = this.props
-    const { duration } = soundCloudAudio.audio
+    const { duration } = song
+    const d = duration / 1000
 
     if (!hasJoined) {
       soundCloudAudio.audio.autoplay = true
@@ -50,8 +51,7 @@ class PlayerControl extends Component {
           <h3 className='song-title'>{song.title}</h3>
           <Timer
             currentTime={time}
-            duration={duration} />
-          <Progress {...this.props} />
+            duration={d} />
         </div>
       )
     } else {
@@ -61,8 +61,7 @@ class PlayerControl extends Component {
             <h3 className='song-title'>{song.title}</h3>
             <Timer
               currentTime={time}
-              duration={duration} />
-            <Progress {...this.props} />
+              duration={d} />
           </div>
         )
       } else {
@@ -70,8 +69,7 @@ class PlayerControl extends Component {
           <div className='controls-container'>
             <Timer
               currentTime={time}
-              duration={duration} />
-            <Progress {...this.props} />
+              duration={d} />
           </div>
         )
       }

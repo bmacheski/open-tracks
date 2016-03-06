@@ -48,7 +48,8 @@ module.exports = app => {
     let song = new Song({
       title: req.body.title,
       track: req.body.streamUrl,
-      artworkUrl: req.body.artworkUrl
+      artworkUrl: req.body.artworkUrl,
+      duration: req.body.duration
     })
 
     Playlist

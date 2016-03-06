@@ -11,15 +11,12 @@ class Player extends Component {
     socket.on('client update', t => {
       dispatch(receiveNewTime(t))
     })
-
-    socket.on('duration update', t => {
-      dispatch(receiveNewTime(t))
-    })
   }
 
   render() {
     const { hasJoined, dispatch, time, songIndex } = this.props
     const song = this.props.playlistSongs.items[songIndex]
+    const duration = song.duration
 
     if (!hasJoined) {
       return (
@@ -29,10 +26,11 @@ class Player extends Component {
             streamUrl={song.streamUrl}
             clientId={client_id}>
             <PlayerControl
-            song={song}
-            time={time}
-            dispatch={dispatch}
-            hasJoined={hasJoined} />
+              song={song}
+              time={time}
+              duration={duration}
+              dispatch={dispatch}
+              hasJoined={hasJoined} />
           </SoundPlayerContainer>
         </div>
       )
@@ -43,6 +41,7 @@ class Player extends Component {
             clientId={client_id}>
             <PlayerControl
               time={time}
+              duration={duration}
               song={song}
               hasJoined={hasJoined} />
           </SoundPlayerContainer>

@@ -14,7 +14,6 @@ export function createChannel(channel) {
           browserHistory.push(`/home/${channel}`)
       })
       .catch(err => {
-        console.log(err)
         dispatch({ type: 'SAVE_CHANNEL_FAILURE', error: err.data.message })
       })
   }
@@ -37,12 +36,24 @@ export function joinChannel(channel) {
   }
 }
 
-export function createSong(title, streamUrl, artworkUrl) {
+export function createSong(title, streamUrl, artworkUrl, duration) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
-    let song = { title: title, streamUrl: streamUrl, channel: channel, artworkUrl: artworkUrl }
+    let song = {
+      title: title,
+      streamUrl: streamUrl,
+      channel: channel,
+      artworkUrl: artworkUrl,
+      duration: duration
+    }
     socket.emit('new song', song)
-    dispatch({ type: 'SAVE_SONG', channel: channel, song: song, artworkUrl: artworkUrl })
+    dispatch({
+      type: 'SAVE_SONG',
+      channel: channel,
+      song: song,
+      artworkUrl: artworkUrl,
+      duration: duration
+    })
     return axios
       .post('/song', song)
       .then(res => dispatch({ type: 'UPDATE_PLAYLIST' }))
@@ -57,7 +68,14 @@ export function fetchPlaylistSongs(chan) {
     return axios
       .get(`/playlist/${playlistChannel}`)
       .then(res => {
-        const song = res.data.items.map(s => { return { title: s.title, streamUrl: s.track, artworkUrl: s.artworkUrl }})
+        const song = res.data.items.map(s => {
+          return {
+            title: s.title,
+            streamUrl: s.track,
+            artworkUrl: s.artworkUrl,
+            duration: s.duration
+          }
+        })
         dispatch({ type: 'RECEIVE_PLAYLIST_SONGS', songs: song, channel: playlistChannel })
       })
       .catch(err => { throw err })
