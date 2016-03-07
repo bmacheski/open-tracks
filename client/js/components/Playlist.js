@@ -33,7 +33,8 @@ class Playlist extends Component {
         <h3 className="users-count"></h3>
       </Subheader>
     )
-    { return this.props.playlistSongs.items ?
+    { return this.props.playlistSongs.items &&
+      this.props.playlistSongs.items.length > 0 ?
       (
         <div className="playlist-wrapper">
           <List>

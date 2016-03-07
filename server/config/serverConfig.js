@@ -1,8 +1,9 @@
 'use strict'
 
-const path      = require('path')
-  , config      = require('./development')
-  , bodyParser  = require('body-parser')
+const path     = require('path')
+  , bodyParser = require('body-parser')
+  , config     = require('./development')
+
 
 module.exports = (app, express) => {
 

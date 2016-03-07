@@ -1,7 +1,7 @@
 {
   "name": "open-tracks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Collaborative jukebox",
   "main": "index.js",
   "scripts": {
     "test": "",

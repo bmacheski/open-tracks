@@ -3,6 +3,7 @@
 module.exports = io => {
 
   io.on('connection', function (socket) {
+
     socket.on('join channel', res => {
       socket.join(res.channel)
     })

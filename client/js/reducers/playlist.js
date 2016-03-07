@@ -18,7 +18,9 @@ function playlist(state = initialState, action) {
   }
 }
 
-export default function playlists(state = { hasJoined: false }, action) {
+const playlistsInitialState = { hasJoined: false }
+
+export default function playlists(state = playlistsInitialState, action) {
   switch (action.type) {
     case 'SAVE_CHANNEL':
       return Object.assign({}, state, {

@@ -15,8 +15,8 @@ class Player extends Component {
 
   render() {
     const { hasJoined, dispatch, time, songIndex } = this.props
-    const song = this.props.playlistSongs.items[songIndex]
-    const duration = song.duration
+    const song = this.props.playlistSongs.items[songIndex] ? this.props.playlistSongs.items[songIndex] : ''
+    const duration = song.duration ? song.duration : ''
 
     if (!hasJoined) {
       return (
