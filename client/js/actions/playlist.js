@@ -39,13 +39,14 @@ export function joinChannel(channel) {
 export function createSong(title, streamUrl, artworkUrl, duration) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
-    let song = {
+    const song = {
       title: title,
       streamUrl: streamUrl,
       channel: channel,
       artworkUrl: artworkUrl,
       duration: duration
     }
+
     socket.emit('new song', song)
     dispatch({
       type: 'SAVE_SONG',

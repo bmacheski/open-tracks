@@ -12,6 +12,7 @@ import { socket } from '../io'
 class HomeContainer extends Component {
   componentDidMount() {
     const { dispatch, channel } = this.props
+
     socket.on('new song', s => {
       dispatch(receiveNewSong(s, channel))
     })

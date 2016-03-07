@@ -9,7 +9,12 @@ module.exports = io => {
     })
 
     socket.on('new song', res => {
-      let songObj = { title: res.title, streamUrl: res.streamUrl }
+      let songObj = {
+        title: res.title,
+        streamUrl: res.streamUrl,
+        duration: res.duration,
+        artworkUrl: res.artworkUrl
+      }
       socket.broadcast.to(res.channel).emit('new song', songObj)
     })
 
