@@ -12,16 +12,20 @@ class CreateRoom extends Component {
 
   handleCreateRoom(e) {
     const { dispatch } = this.props
+
     if (e.charCode === 13) {
-      let channel = e.currentTarget.value
+      let chan = e.currentTarget.value
+      let channel = chan.toLowerCase().trim()
       dispatch(createChannel(channel))
     }
   }
 
   handleJoinRoom(e) {
     const { dispatch } = this.props
+
     if (e.charCode === 13) {
-      let channel = e.currentTarget.value
+      let chan = e.currentTarget.value
+      let channel = chan.toLowerCase().trim()
       dispatch(joinChannel(channel))
     }
   }

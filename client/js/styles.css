@@ -83,10 +83,10 @@ li {
 }
 
 .subheader {
-  font-size: 15px;
+  font-size: 12px;
   text-align: left;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* player */
@@ -114,6 +114,7 @@ li {
   height: 20px;
   color: #FC561E;
   border-radius: 3px;
+  border: none;
 }
 
 .sb-soundplayer-timer {

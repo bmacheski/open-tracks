@@ -21,13 +21,14 @@ class PlayerControl extends Component {
   }
 
   handleNextPlaylistSong() {
-    const { dispatch } = this.props
+    const { dispatch, channel } = this.props
 
+    socket.emit('next song index', channel)
     dispatch(updateCurrentPlaylistSong())
   }
 
   togglePlay() {
-    const { soundCloudAudio, playing } = this.props
+    const { soundCloudAudio, playing, channel } = this.props
 
     playing ? soundCloudAudio.pause() : soundCloudAudio.play()
   }

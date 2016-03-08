@@ -9,12 +9,14 @@ injectTapEventPlugin();
 class Nav extends Component {
   toggleNav() {
     const { dispatch } = this.props
+
     dispatch(toggleNav())
   }
 
   render() {
     const { dispatch } = this.props
-    let title = "Open Tracks"
+    const title = "Open Tracks"
+
     return (
       <div>
         <AppBar

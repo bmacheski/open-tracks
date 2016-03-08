@@ -22,7 +22,8 @@ function mapStateToProps(state) {
     playlistSongs,
     hasJoined,
     time,
-    songIndex
+    songIndex,
+    channel
   }
 }
 

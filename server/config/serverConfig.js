@@ -4,7 +4,6 @@ const path     = require('path')
   , bodyParser = require('body-parser')
   , config     = require('./development')
 
-
 module.exports = (app, express) => {
 
   app.use(bodyParser.json())
