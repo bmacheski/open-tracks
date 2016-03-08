@@ -21,6 +21,7 @@ class SearchInput extends Component {
           ref="searchInput"
           type="text"
           id="search"
+          className="search-field"
           onKeyDown={this.handleKeyUp.bind(this)}>
         </TextField>
       </div>

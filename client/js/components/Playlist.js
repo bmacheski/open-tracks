@@ -9,12 +9,14 @@ import Subheader from 'material-ui/lib/Subheader'
 class Playlist extends Component {
   renderPlaylist() {
     const { items } = this.props.playlistSongs
+    const { songIndex} = this.props
 
     if (items) {
       return items.map((song, i) => {
         return (
           <div key={i}>
             <ListItem
+              className={i == songIndex ? 'playing' : ''}
               primaryText={song.title}
               leftAvatar={<Avatar src={song.artworkUrl} />}>
             </ListItem>

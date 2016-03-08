@@ -46,7 +46,7 @@ class Search extends Component {
 
   render() {
     const { query, dispatch, open, mobile } = this.props
-    const width = (mobile) ? 325 : 500
+    const width = (mobile) ? 270 : 500
 
     { return (query) ? (
         <LeftNav

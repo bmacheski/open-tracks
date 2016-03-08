@@ -14,8 +14,39 @@ li {
   height: 50px !important;
 }
 
+.controls-container {
+  margin: 5px;
+}
+
+.create-wrapper {
+  display: block;
+  width: 60%;
+  margin-top: 12%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 600px) {
+  .create-wrapper {
+    width: 90%;
+    margin-top: 30%;
+  }
+
+  .controls-container {
+    font-size: 11px;
+  }
+
+  .playlist-notice {
+    margin-top: 35%;
+  }
+}
+
+ul.search-results {
+  padding-left: 0px !important;
+}
+
 #search {
-  width: 90%;
+  width: 60%;
   position: relative;
   left: 10%;
 }
@@ -24,19 +55,8 @@ li {
   float: right;
 }
 
-.controls-container {
-  margin: 5px;
-}
-
 .create-title {
   font-size: 30px;
-}
-
-.create-wrapper {
-  display: block;
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .home {
@@ -84,6 +104,10 @@ li {
   width: 100%;
 }
 
+.playing {
+  background-color: rgb(222, 220, 220) !important;
+}
+
 .sb-soundplayer-play-icon {
   background-color: transparent;
   height: 20px;
@@ -93,6 +117,10 @@ li {
 
 .sb-soundplayer-timer {
   margin-top: 10px;
+}
+
+.search-field {
+  width: 240px !important;
 }
 
 .search-icon {
@@ -119,11 +147,11 @@ li {
 .subheader {
   font-size: 15px;
   text-align: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .song-title {
   display: inline;
-  margin-left: 20px;
+  margin-left: 10px;
 }
