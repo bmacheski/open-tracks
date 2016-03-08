@@ -1,3 +1,5 @@
+/* global */
+
 body {
   margin: 0;
   font-family: Roboto, sans-serif;
@@ -14,9 +16,7 @@ li {
   height: 50px !important;
 }
 
-.controls-container {
-  margin: 5px;
-}
+/* create room */
 
 .create-wrapper {
   display: block;
@@ -25,6 +25,12 @@ li {
   margin-left: auto;
   margin-right: auto;
 }
+
+.create-title {
+  font-size: 30px;
+}
+
+/* media queries **/
 
 @media (max-width: 600px) {
   .create-wrapper {
@@ -39,30 +45,13 @@ li {
   .playlist-notice {
     margin-top: 35%;
   }
+
+  .song-title {
+    font-size: 15px !important;
+  }
 }
 
-ul.search-results {
-  padding-left: 0px !important;
-}
-
-#search {
-  width: 60%;
-  position: relative;
-  left: 10%;
-}
-
-.add-button {
-  float: right;
-}
-
-.create-title {
-  font-size: 30px;
-}
-
-.home {
-  position: relative;
-  left: 500px;
-}
+/* playlist */
 
 .input-field label i, .create-title {
   color: rgb(158, 158, 158);
@@ -77,13 +66,10 @@ ul.search-results {
   height: 60px !important;
   position: relative;
   width: 100% !important;
-
 }
 
-.play-btn {
-  background-color: transparent;
-  border: 1px solid #FC561E;
-  border-radius: 3px;
+.playing {
+  background-color: rgb(222, 220, 220) !important;
 }
 
 .playlist-notice {
@@ -96,6 +82,19 @@ ul.search-results {
   text-align: center
 }
 
+.subheader {
+  font-size: 15px;
+  text-align: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* player */
+
+.controls-container {
+  margin: 5px;
+}
+
 .player {
   background-color: #fff;
   border-top: 1px solid #2D2D11;
@@ -104,8 +103,10 @@ ul.search-results {
   width: 100%;
 }
 
-.playing {
-  background-color: rgb(222, 220, 220) !important;
+.play-btn {
+  background-color: transparent;
+  border: 1px solid #FC561E;
+  border-radius: 3px;
 }
 
 .sb-soundplayer-play-icon {
@@ -117,6 +118,23 @@ ul.search-results {
 
 .sb-soundplayer-timer {
   margin-top: 10px;
+}
+
+.song-title {
+  display: inline;
+  margin-left: 10px;
+}
+
+/* right search */
+
+ul.search-results {
+  padding-left: 0px !important;
+}
+
+#search {
+  width: 60%;
+  position: relative;
+  left: 10%;
 }
 
 .search-field {
@@ -138,20 +156,4 @@ ul.search-results {
   left: 7%;
   position: relative;
   width: 90%;
-}
-
-.side-nav {
-  width: 400px;
-}
-
-.subheader {
-  font-size: 15px;
-  text-align: left;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.song-title {
-  display: inline;
-  margin-left: 10px;
 }

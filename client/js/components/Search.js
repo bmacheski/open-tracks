@@ -20,6 +20,7 @@ class Search extends Component {
     const streamUrl = song.stream_url
     const artworkUrl = song.artwork_url
     const duration = song.duration
+
     dispatch(createSong(title, streamUrl, artworkUrl, duration))
   }
 
