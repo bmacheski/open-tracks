@@ -49,7 +49,8 @@ module.exports = app => {
       title: req.body.title,
       track: req.body.streamUrl,
       artworkUrl: req.body.artworkUrl,
-      duration: req.body.duration
+      duration: req.body.duration,
+      scId: req.body.scId
     })
 
     Playlist
@@ -62,5 +63,19 @@ module.exports = app => {
         items.save()
       })
     res.status(200).send({ message: 'Song saved successfully.'})
+  })
+
+  app.delete('/song/:channel/:id', (req, res) => {
+    Playlist
+      .findOne({ channel: req.params.channel })
+      .populate('songs')
+      .exec((err, items) => {
+        if (err) throw err
+        let o = items.songs.pull(req.params.id)
+        let id = o[0]._id
+        items.songs.remove(id)
+        items.save()
+      })
+    res.send({ id: req.params.id, message: 'Song deleted sucessfully.' })
   })
 }

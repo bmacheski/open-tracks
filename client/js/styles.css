@@ -53,6 +53,10 @@ li {
 
 /* playlist */
 
+.delete-icon {
+  float: right;
+}
+
 .input-field label i, .create-title {
   color: rgb(158, 158, 158);
   position: relative;

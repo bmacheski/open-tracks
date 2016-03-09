@@ -5,8 +5,15 @@ import Divider from 'material-ui/lib/divider'
 import { socket } from '../io'
 import Avatar from 'material-ui/lib/avatar'
 import Subheader from 'material-ui/lib/Subheader'
+import { deleteSong } from '../actions/playlist'
 
 class Playlist extends Component {
+  handleDeleteSong(song) {
+    const { dispatch } = this.props
+
+    dispatch(deleteSong(song.scId))
+  }
+
   renderPlaylist() {
     const { items } = this.props.playlistSongs
     const { songIndex} = this.props
@@ -19,6 +26,9 @@ class Playlist extends Component {
               className={i == songIndex ? 'playing' : ''}
               primaryText={song.title}
               leftAvatar={<Avatar src={song.artworkUrl} />}>
+              <i
+                className="material-icons delete-icon"
+                onClick={this.handleDeleteSong.bind(this, song)}>close</i>
             </ListItem>
             <Divider inset={true} />
           </div>

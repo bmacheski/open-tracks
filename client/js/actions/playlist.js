@@ -2,6 +2,12 @@ import axios from 'axios'
 import { browserHistory } from 'react-router'
 import { socket } from '../io'
 
+export function resetChannel() {
+  return {
+    type: 'RESET_CHANNEL'
+  }
+}
+
 export function createChannel(channel) {
   return dispatch => {
     const channelObj = { channel: channel }
@@ -36,7 +42,7 @@ export function joinChannel(channel) {
   }
 }
 
-export function createSong(title, streamUrl, artworkUrl, duration) {
+export function createSong(title, streamUrl, artworkUrl, duration, scId) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
     const song = {
@@ -44,7 +50,8 @@ export function createSong(title, streamUrl, artworkUrl, duration) {
       streamUrl: streamUrl,
       channel: channel,
       artworkUrl: artworkUrl,
-      duration: duration
+      duration: duration,
+      scId: scId
     }
 
     socket.emit('new song', song)
@@ -53,7 +60,8 @@ export function createSong(title, streamUrl, artworkUrl, duration) {
       channel: channel,
       song: song,
       artworkUrl: artworkUrl,
-      duration: duration
+      duration: duration,
+      scId: scId
     })
     return axios
       .post('/song', song)
@@ -83,16 +91,23 @@ export function fetchPlaylistSongs(chan) {
   }
 }
 
-export function resetChannel() {
-  return {
-    type: 'RESET_CHANNEL'
-  }
-}
-
 export function receiveNewSong(song, channel) {
   return {
     type: 'RECEIVE_NEW_SONG',
     song: song,
     channel: channel
+  }
+}
+
+// TODO: delete functionality after successfully deleted from database
+export function deleteSong(id) {
+  return (dispatch, getState) => {
+    const { channel } = getState().playlist
+    return axios
+      .delete(`/song/${channel}/${id}`)
+      .then(res => {
+        console.log(`${res.data.id} deleted succesfully.`)
+      })
+      .catch(err => { console.log(err) })
   }
 }
