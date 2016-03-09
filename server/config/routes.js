@@ -29,7 +29,7 @@ module.exports = app => {
           if (err) res.send(err)
           if (!docs) {
             res.status(409).send({ message: 'That channel does not exist.' })
-        } else {
+          } else {
           res.status(200).send({ message: 'That room exists.' })
         }
       })
@@ -75,6 +75,11 @@ module.exports = app => {
         let id = o[0]._id
         items.songs.remove(id)
         items.save()
+        Song.findByIdAndRemove(id,
+          (err, song) => {
+            if (err) throw err
+          }
+        )
       })
     res.send({ id: req.params.id, message: 'Song deleted sucessfully.' })
   })

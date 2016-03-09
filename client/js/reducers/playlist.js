@@ -13,6 +13,13 @@ function playlist(state = initialState, action) {
       return Object.assign({}, state, {
         items: [...state.items, ...action.songs]
       })
+    case 'REMOVE_SONG_FROM_PLAYLIST':
+      return Object.assign({}, state, {
+        items: [
+          ...state.items.slice(0, action.index),
+          ...state.items.slice(action.index + 1)
+        ]
+      })
     default:
       return state;
   }
@@ -53,6 +60,7 @@ export default function playlists(state = playlistsInitialState, action) {
     case 'SAVE_SONG':
     case 'RECEIVE_PLAYLIST_SONGS':
     case 'RECEIVE_NEW_SONG':
+    case 'REMOVE_SONG_FROM_PLAYLIST':
       return Object.assign({}, state, {
         [action.channel]: playlist(state[action.channel], action)
       })

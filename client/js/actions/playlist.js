@@ -99,13 +99,23 @@ export function receiveNewSong(song, channel) {
   }
 }
 
-// TODO: delete functionality after successfully deleted from database
+function removeSongFromPlaylist(channel, index) {
+  return {
+    type: 'REMOVE_SONG_FROM_PLAYLIST',
+    channel: channel,
+    index: index
+  }
+}
+
 export function deleteSong(id) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
+    const { items } = getState().playlist[channel]
     return axios
       .delete(`/song/${channel}/${id}`)
       .then(res => {
+        let index = items.map((item) => item.scId.toString()).indexOf(res.data.id)
+        dispatch(removeSongFromPlaylist(channel, index))
         console.log(`${res.data.id} deleted succesfully.`)
       })
       .catch(err => { console.log(err) })
