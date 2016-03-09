@@ -5,9 +5,17 @@ import Divider from 'material-ui/lib/divider'
 import { socket } from '../io'
 import Avatar from 'material-ui/lib/avatar'
 import Subheader from 'material-ui/lib/Subheader'
-import { deleteSong } from '../actions/playlist'
+import { deleteSong, removeSongFromPlaylist } from '../actions/playlist'
 
 class Playlist extends Component {
+  componentDidMount() {
+    const { channel, dispatch } = this.props
+
+    socket.on('playlist song removed', t => {
+      dispatch(removeSongFromPlaylist(channel, t))
+    })
+  }
+
   handleDeleteSong(song) {
     const { dispatch } = this.props
 

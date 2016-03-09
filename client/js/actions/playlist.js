@@ -99,7 +99,7 @@ export function receiveNewSong(song, channel) {
   }
 }
 
-function removeSongFromPlaylist(channel, index) {
+export function removeSongFromPlaylist(channel, index) {
   return {
     type: 'REMOVE_SONG_FROM_PLAYLIST',
     channel: channel,
@@ -115,8 +115,9 @@ export function deleteSong(id) {
       .delete(`/song/${channel}/${id}`)
       .then(res => {
         let index = items.map((item) => item.scId.toString()).indexOf(res.data.id)
+
         dispatch(removeSongFromPlaylist(channel, index))
-        console.log(`${res.data.id} deleted succesfully.`)
+        socket.emit('song removed', { channel: channel, index: index })
       })
       .catch(err => { console.log(err) })
   }

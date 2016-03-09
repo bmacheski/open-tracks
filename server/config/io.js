@@ -25,5 +25,10 @@ module.exports = io => {
     socket.on('next song index', res => {
       socket.broadcast.to(res).emit('playlist index increment')
     })
+
+    socket.on('song removed', res => {
+      console.log(res)
+      socket.broadcast.to(res.channel).emit('playlist song removed', res.index)
+    })
   })
 }
