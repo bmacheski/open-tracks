@@ -19,7 +19,7 @@ class Player extends Component {
   }
 
   render() {
-    const { hasJoined, dispatch, time, songIndex, playlistSongs, channel } = this.props
+    const { hasJoined, dispatch, time, songIndex, playlistSongs, channel, isPlaying } = this.props
     const song = playlistSongs.items[songIndex] ? playlistSongs.items[songIndex] : ''
     const duration = song.duration ? song.duration : ''
 
@@ -46,6 +46,8 @@ class Player extends Component {
               time={time}
               channel={channel}
               duration={duration}
+              dispatch={dispatch}
+              isPlaying={isPlaying}
               song={song}
               hasJoined={hasJoined} />
           </SoundPlayerContainer>

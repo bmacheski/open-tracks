@@ -75,6 +75,7 @@ module.exports = app => {
         let id = o[0]._id
         items.songs.remove(id)
         items.save()
+
         Song.findByIdAndRemove(id,
           (err, song) => {
             if (err) throw err

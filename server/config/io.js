@@ -27,8 +27,15 @@ module.exports = io => {
     })
 
     socket.on('song removed', res => {
-      console.log(res)
       socket.broadcast.to(res.channel).emit('playlist song removed', res.index)
+    })
+
+    socket.on('song playing:c', res => {
+      socket.broadcast.to(res).emit('song playing')
+    })
+
+    socket.on('song paused:c', res => {
+      socket.broadcast.to(res).emit('song not playing')
     })
   })
 }

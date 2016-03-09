@@ -31,3 +31,15 @@ export function updateCurrentPlaylistSong() {
     dispatch({ type: 'UPDATE_CURRENT_PLAYLIST_SONG', songIndex: newIndex })
   }
 }
+
+export function setPlaying() {
+  return {
+    type: 'SET_IS_PLAYING'
+  }
+}
+
+export function setNotPlaying() {
+  return {
+    type: 'SET_NOT_PLAYING'
+  }
+}
