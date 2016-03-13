@@ -11,12 +11,14 @@ class PlaylistContainer extends Component {
 function mapStateToProps(state) {
   const { channel } = state.playlist
   const { songIndex } = state.player
+  const { open } = state.environment
   const playlistSongs = state.playlist[channel] ? state.playlist[channel] : []
 
   return {
     channel,
     playlistSongs,
-    songIndex
+    songIndex,
+    open
   }
 }
 
