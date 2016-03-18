@@ -9,7 +9,14 @@ A collaborative music player where users can influence what is being played. The
 * Socket.io
 * Node.js / Express
 * Mongoose / MongoDB
-* Material UI
+
+## Getting started
+
+First you will need to obtain a SoundCloud API key and then create a secrets.js file in the root directory where you will need to export that key.
+
+* npm install
+* npm run start
+* npm run build
 
 ## License
 

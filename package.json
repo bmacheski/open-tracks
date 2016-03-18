@@ -6,7 +6,8 @@
   "scripts": {
     "test": "",
     "start": "nodemon server/server.js",
-    "build": "webpack --w"
+    "build:dev": "webpack --w",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "axios": "^0.9.1",
     "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
     "express": "^4.13.4",
     "material-ui": "^0.15.0-alpha.1",
     "mongoose": "^4.4.5",

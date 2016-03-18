@@ -52,6 +52,7 @@ class Search extends Component {
 
     { return (query) ? (
         <LeftNav
+          className="sidenav-c"
           width={width}
           openRight={true}
           open={open}>
