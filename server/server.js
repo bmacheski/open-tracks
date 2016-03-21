@@ -14,4 +14,4 @@ const server = app.listen(port, () => console.log(chalk.green('✔ Server listen
 const io = socketio.listen(server)
 
 require('./config/serverConfig.js')(app, express)
-require('./config/io')(io)
+require('./io')(io)
