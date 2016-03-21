@@ -29,6 +29,7 @@ module.exports = app => {
       .findOne({ channel: req.body.channel })
       .exec((err, docs) => {
         if (err) return next(err)
+
         if (!docs) {
           res.status(409).send({ message: 'That channel does not exist.' })
         } else {

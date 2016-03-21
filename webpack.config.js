@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const notifier = require('webpack-notifier')
 const path = require('path')
 
-module.exports = {
+const config = {
   entry: './client/js/index.js',
   output: {
     path: path.join(__dirname, '/client/public'),
@@ -36,3 +36,9 @@ module.exports = {
     new notifier()
   ]
 }
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+}
+
+module.exports = config

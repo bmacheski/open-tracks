@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "",
-    "start": "nodemon server/server.js",
-    "build:dev": "webpack --w",
-    "build": "webpack"
+    "start": "npm run server",
+    "server": "NODE_ENV=development nodemon server/server.js",
+    "build": "NODE_ENV=development webpack --w",
+    "server:prod": "NODE_ENV=production node server/server.js",
+    "build:prod": "NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
