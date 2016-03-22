@@ -2,6 +2,10 @@
 
 A collaborative music player where users can influence what is being played. The creator of the room's device will play the music and others who join the room can add songs to the rooms playlist.
 
+## Demo
+
+[Open Tracks](https://open-tracks.herokuapp.com/)
+
 ## Tech
 
 * React
