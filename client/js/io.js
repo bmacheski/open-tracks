@@ -1,2 +1,3 @@
 import io from 'socket.io-client'
-export const socket = io('http://localhost:3000')
+const host = location.origin.replace(/^http/, 'ws')
+export const socket = io(host)

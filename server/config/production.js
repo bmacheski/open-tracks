@@ -9,6 +9,6 @@ module.exports = {
   root: path.join(__dirname, '/../..'),
   mongo: {
     url: process.env.MONGODB_URL || 'mongodb://' + MONGODB_USER + ':' + MONGODB_PASSWORD +
-    '@ds051933.mongolab.com:51933/open-tracks'
+    '@ds015508.mlab.com:15508/open-tracks'
   }
 }
