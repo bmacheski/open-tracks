@@ -4,7 +4,6 @@ import ListItem from 'material-ui/lib/lists/list-item'
 import Divider from 'material-ui/lib/divider'
 import { socket } from '../io'
 import Avatar from 'material-ui/lib/avatar'
-import Subheader from 'material-ui/lib/Subheader'
 import { deleteSong, removeSongFromPlaylist } from '../actions/playlist'
 import { toggleNav } from '../actions/environment'
 
@@ -62,10 +61,10 @@ class Playlist extends Component {
   render() {
     const { channel } = this.props
     const subheader = (
-      <Subheader>
+      <div>
         <h3 className="subheader">Channel: {channel}</h3>
         <h3 className="users-count"></h3>
-      </Subheader>
+      </div>
     )
 
     { return this.props.playlistSongs.items &&
@@ -74,8 +73,7 @@ class Playlist extends Component {
         <div
           className="playlist-wrapper"
           onClick={this.handleCloseSideNav}>
-          <List>
-            {subheader}
+          <List subheader={subheader}>
             <h3>Playlist</h3>
             {this.renderPlaylist()}
           </List>

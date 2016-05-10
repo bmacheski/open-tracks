@@ -5,7 +5,7 @@ import TextField from 'material-ui/lib/text-field'
 class SearchInput extends Component {
   handleKeyUp(e) {
     const { dispatch } = this.props
-    const query = this.refs.searchInput.input.value
+    const query = this.refs.searchInput.refs.input.value
 
     if (e.keyCode === 13 && query) {
       dispatch(fetchSongs(query))
