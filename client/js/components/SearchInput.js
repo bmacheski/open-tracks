@@ -7,9 +7,7 @@ class SearchInput extends Component {
     const { dispatch } = this.props
     const query = this.refs.searchInput.refs.input.value
 
-    if (e.keyCode === 13 && query) {
-      dispatch(fetchSongs(query))
-    }
+    if (e.keyCode === 13 && query) dispatch(fetchSongs(query))
   }
 
   render() {

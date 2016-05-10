@@ -13,13 +13,8 @@ class HomeContainer extends Component {
   componentDidMount() {
     const { dispatch, channel } = this.props
 
-    socket.on('new song', s => {
-      dispatch(receiveNewSong(s, channel))
-    })
-
-    socket.on('client time', t => {
-      dispatch(receiveNewTime(t))
-    })
+    socket.on('new song', s => dispatch(receiveNewSong(s, channel)))
+    socket.on('client time', t => dispatch(receiveNewTime(t)))
   }
 
   render() {
@@ -38,8 +33,8 @@ class HomeContainer extends Component {
 
 function mapStateToProps(state) {
   const { channel } = state.playlist
-
   const playlistSongs = state.playlist[channel] ? state.playlist[channel] : []
+
   return {
     channel,
     playlistSongs

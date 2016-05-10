@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router'
 import { syncHistory, routeReducer } from 'react-router-redux'
 
 const reduxRouterMiddleware = syncHistory(browserHistory)
-
 const createFinalStore = compose(
   applyMiddleware(
     thunkMiddleware,

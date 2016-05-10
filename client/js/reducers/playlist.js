@@ -9,10 +9,12 @@ function playlist(state = initialState, action) {
       return Object.assign({}, state, {
         items: [...state.items, action.song]
       })
+
     case 'RECEIVE_PLAYLIST_SONGS':
       return Object.assign({}, state, {
         items: [...state.items, ...action.songs]
       })
+
     case 'REMOVE_SONG_FROM_PLAYLIST':
       return Object.assign({}, state, {
         items: [
@@ -20,6 +22,7 @@ function playlist(state = initialState, action) {
           ...state.items.slice(action.index + 1)
         ]
       })
+
     default:
       return state;
   }
@@ -36,12 +39,14 @@ export default function playlists(state = playlistsInitialState, action) {
         saveChannelFailure: null,
         channel: action.channel
       })
+
     case 'SAVE_CHANNEL_SUCCESS':
       return Object.assign({}, state, {
         saveChannelPending: false,
         saveChannelSucceeded: true,
         saveChannelFailure: false
       })
+
     case 'SAVE_CHANNEL_FAILURE':
     case 'JOIN_CHANNEL_FAILURE':
       return Object.assign({}, state, {
@@ -50,6 +55,7 @@ export default function playlists(state = playlistsInitialState, action) {
         saveChannelFailure: true,
         error: action.error
       })
+
     case 'RESET_CHANNEL':
       return Object.assign({}, state, {
         saveChannelPending: null,
@@ -57,6 +63,7 @@ export default function playlists(state = playlistsInitialState, action) {
         saveChannelFailure: null,
         error: null
       })
+
     case 'SAVE_SONG':
     case 'RECEIVE_PLAYLIST_SONGS':
     case 'RECEIVE_NEW_SONG':
@@ -64,11 +71,13 @@ export default function playlists(state = playlistsInitialState, action) {
       return Object.assign({}, state, {
         [action.channel]: playlist(state[action.channel], action)
       })
+
     case 'JOIN_CHANNEL':
       return Object.assign({}, state, {
         channel: action.channel,
         hasJoined: true
       })
+
     default:
       return state
   }

@@ -9,13 +9,8 @@ class Player extends Component {
   componentDidMount() {
     const { dispatch } = this.props
 
-    socket.on('client update', t => {
-      dispatch(receiveNewTime(t))
-    })
-
-    socket.on('playlist index increment', t => {
-      dispatch(updateCurrentPlaylistSong(t))
-    })
+    socket.on('client update', t => dispatch(receiveNewTime(t)))
+    socket.on('playlist index increment', t => dispatch(updateCurrentPlaylistSong(t)))
   }
 
   render() {

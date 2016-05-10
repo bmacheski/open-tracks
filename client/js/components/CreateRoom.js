@@ -35,7 +35,7 @@ class CreateRoom extends Component {
 
     if (!saveChannelFailure) {
       return (
-        <div className='create-wrapper'>
+        <div className="create-wrapper">
           <h3 className="create-title">Create a room</h3>
           <TextField
             className="input-field-home"
@@ -52,7 +52,8 @@ class CreateRoom extends Component {
       return (
         <CreateRoomError
           dispatch={dispatch}
-          error={error} />
+          error={error}
+        />
       )
     }
   }

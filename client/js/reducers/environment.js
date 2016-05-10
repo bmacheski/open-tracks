@@ -9,10 +9,12 @@ export default function environment(state = initialState, action) {
     return Object.assign({}, state, {
       mobile: action.mobile
     })
+
   case 'TOGGLE_NAV':
     return Object.assign({}, state, {
       open: !state.open
     })
+
   default:
     return state
   }

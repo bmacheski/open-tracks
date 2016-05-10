@@ -49,7 +49,9 @@ class Playlist extends Component {
               leftAvatar={<Avatar src={song.artworkUrl} />}>
               <i
                 className="material-icons delete-icon"
-                onClick={this.handleDeleteSong.bind(this, song)}>close</i>
+                onClick={this.handleDeleteSong.bind(this, song)}>
+                close
+              </i>
             </ListItem>
             <Divider inset={true} />
           </div>

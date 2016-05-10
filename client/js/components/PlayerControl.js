@@ -16,22 +16,15 @@ class PlayerControl extends Component {
   componentDidMount() {
     const { dispatch } = this.props
 
-    socket.on('song playing', t =>{
-      dispatch(setPlaying())
-    })
-
-    socket.on('song not playing', t => {
-      dispatch(setNotPlaying())
-    })
+    socket.on('song playing', t => dispatch(setPlaying()))
+    socket.on('song not playing', t => dispatch(setNotPlaying()))
   }
 
   handleTimeUpdate() {
     const { dispatch, time } = this.props
     const t = Math.floor(this.props.currentTime)
 
-    if (t !== time) {
-      dispatch(updateCurrentPlayerTime(t))
-    }
+    if (t !== time) dispatch(updateCurrentPlayerTime(t))
   }
 
   handleNextPlaylistSong() {
@@ -79,24 +72,30 @@ class PlayerControl extends Component {
           className='controls-container'
           onClick={this.togglePlay.bind(this)}
           ref='playercontrol'>
-          <PlayButton className='play-btn'
-            playing={playing} />
+          <PlayButton
+            className='play-btn'
+            playing={playing}
+          />
           <h3 className='song-title'>{song.title}</h3>
           <Timer
             currentTime={time}
-            duration={d} />
+            duration={d}
+          />
         </div>
       )
     } else {
       if (song) {
         return (
           <div className='controls-container'>
-            <PlayButton className='play-btn'
-              playing={isPlaying} />
+            <PlayButton
+              className='play-btn'
+              playing={isPlaying}
+            />
             <h3 className='song-title'>{song.title}</h3>
             <Timer
               currentTime={time}
-              duration={d} />
+              duration={d}
+            />
           </div>
         )
       } else {

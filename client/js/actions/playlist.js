@@ -11,7 +11,9 @@ export function resetChannel() {
 export function createChannel(channel) {
   return dispatch => {
     const channelObj = { channel: channel }
+
     dispatch({ type: 'SAVE_CHANNEL', channel: channel })
+
     return axios
       .post('/channel', channelObj)
       .then(res => {
@@ -28,7 +30,9 @@ export function createChannel(channel) {
 export function joinChannel(channel) {
   return dispatch => {
     const channelObj = { channel: channel }
+
     dispatch({ type: 'JOIN_CHANNEL', channel: channel })
+
     return axios
       .post('/channel/join', channelObj)
       .then(res => {
@@ -46,23 +50,24 @@ export function createSong(title, streamUrl, artworkUrl, duration, scId) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
     const song = {
-      title: title,
-      streamUrl: streamUrl,
-      channel: channel,
-      artworkUrl: artworkUrl,
-      duration: duration,
-      scId: scId
+      title,
+      streamUrl,
+      channel,
+      artworkUrl,
+      duration,
+      scId
     }
 
     socket.emit('new song', song)
     dispatch({
       type: 'SAVE_SONG',
-      channel: channel,
-      song: song,
-      artworkUrl: artworkUrl,
-      duration: duration,
-      scId: scId
+      channel,
+      song,
+      artworkUrl,
+      duration,
+      scId
     })
+
     return axios
       .post('/song', song)
       .then(res => dispatch({ type: 'UPDATE_PLAYLIST' }))
@@ -74,6 +79,7 @@ export function fetchPlaylistSongs(chan) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
     const playlistChannel = channel || chan
+
     return axios
       .get(`/playlist/${playlistChannel}`)
       .then(res => {
@@ -94,16 +100,16 @@ export function fetchPlaylistSongs(chan) {
 export function receiveNewSong(song, channel) {
   return {
     type: 'RECEIVE_NEW_SONG',
-    song: song,
-    channel: channel
+    song,
+    channel
   }
 }
 
 export function removeSongFromPlaylist(channel, index) {
   return {
     type: 'REMOVE_SONG_FROM_PLAYLIST',
-    channel: channel,
-    index: index
+    channel,
+    index
   }
 }
 
@@ -111,13 +117,14 @@ export function deleteSong(id) {
   return (dispatch, getState) => {
     const { channel } = getState().playlist
     const { items } = getState().playlist[channel]
+
     return axios
       .delete(`/song/${channel}/${id}`)
       .then(res => {
         let index = items.map((item) => item.scId.toString()).indexOf(res.data.id)
 
         dispatch(removeSongFromPlaylist(channel, index))
-        socket.emit('song removed', { channel: channel, index: index })
+        socket.emit('song removed', { channel, index })
       })
       .catch(err => { console.log(err) })
   }

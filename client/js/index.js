@@ -14,10 +14,10 @@ const store = configure()
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App}>
+      <Route path="/" component={App}>
         <IndexRoute component={LandingContainer} />
-        <Route path='/home/:channel' component={HomeContainer} />
-        <Route path='/home/:channel/playlist' component={PlayListContainer} />
+        <Route path="/home/:channel" component={HomeContainer} />
+        <Route path="/home/:channel/playlist" component={PlayListContainer} />
       </Route>
     </Router>
   </Provider>, document.getElementById('app')
